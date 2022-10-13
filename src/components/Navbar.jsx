@@ -1,6 +1,6 @@
 const Navbar = () => {
   return (
-    <nav className="flex bg-darkGray pt-4 pl-4 fixed top-0 left-0 h-full w-full z-50 text-white lg:w-14">
+    <nav className="flex bg-blue-500 pt-4 pl-4 fixed top-0 left-0 h-full w-full z-50 text-white lg:w-14">
       <div className="w-10/12 mx-auto">
         <div>
           <svg
