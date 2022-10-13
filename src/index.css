@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: #1e1e1e;
+  color: white;
+}
+
+#head {
+  background-image: url("../src/assets/rema.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: right;
+}
