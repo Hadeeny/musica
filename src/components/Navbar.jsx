@@ -26,7 +26,7 @@ const Navbar = () => {
             </svg>
           </div>
 
-          <ul className="bg-darkGray lg:rounded-xl lg:rounded-b-xl">
+          <ul className="bg-darkGray lg:-ml-2 lg:rounded-xl lg:rounded-b-xl">
             <li className="flex items-center my-10">
               <span className="lg:hidden ml-6 order-2">Home</span>
               <svg
@@ -195,7 +195,7 @@ const Navbar = () => {
               </svg>
             </li>
           </ul>
-          <ul className="bg-darkGray lg:mt-16 lg:rounded-xl lg:rounded-b-xl">
+          <ul className="bg-darkGray lg:-ml-2 lg:mt-16 lg:rounded-xl lg:rounded-b-xl">
             <li className="flex items-center ml-[0.7rem] lg:ml-1 mb-10">
               <span className="lg:hidden ml-8 order-2">Profile</span>
               <svg
