@@ -8,6 +8,7 @@ import like from '../assets/whitelike.svg'
 import NewRelease from '../components/NewRelease'
 
 const Home = () => {
+  
   return (
     <>
       {/* first section */}
