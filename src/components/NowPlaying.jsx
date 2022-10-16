@@ -12,8 +12,10 @@ import { IconContext } from "react-icons";
 const NowPlaying = () => {
   const audioEl = useRef(null);
   const progressBar = useRef(null);
-  const [width, setWidth] = useState(0)
-  const [duration, setDuration] = useState(0)
+  const animationRef = useRef(null);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [width, setWidth] = useState(0);
+  const [duration, setDuration] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [songs, setSongs] = useState([
     {
@@ -50,39 +52,49 @@ const NowPlaying = () => {
       }
     });
   }, [currentSongIndex]);
- 
-  useEffect(() => {
-     if(isPlaying){
-       audioEl.current.play()
-     } else {
-       audioEl.current.pause()
-     }
-  })
-
-  // const updateProgress = ()=>{
-  //   const {duration, currentTime} = audioEl.current
-  //   const progressPercent = (currentTime/duration) * 100
-  //   setWidth(progressPercent )
-  // }
 
   useEffect(() => {
-    let currentTime = audioEl.current.currentTime
-    setDuration(audioEl.current.duration)
-    const progressPercent = (currentTime/duration) * 100
-    setWidth(progressPercent)
-    console.log(currentTime)
-  }, [isPlaying])
+    if (isPlaying) {
+      audioEl.current.play();
+      animationRef.current = requestAnimationFrame(whilePlaying);
+    } else {
+      audioEl.current.pause();
+      cancelAnimationFrame(animationRef.current);
+    }
+  });
 
+  useEffect(() => {
+    const seconds = Math.floor(audioEl.current.duration);
+    setDuration(seconds);
+    progressBar.current.max = seconds;
+  }, [audioEl?.current?.loadedmetadata, audioEl?.current?.readyState]);
+
+  const whilePlaying = () => {
+    progressBar.current.value = audioEl.current.currentTime;
+    changePlayerCurrentTime();
+    animationRef.current = requestAnimationFrame(whilePlaying);
+  };
+
+  const calculateTime = (secs) => {
+    const minutes = Math.floor(secs / 60);
+    const returnedMinutes = minutes < 10 ? `0${minutes}` : `${minutes}`;
+    const seconds = Math.floor(secs % 60);
+    const returnedSeconds = seconds < 10 ? `0${seconds}` : `${seconds}`;
+    return `${returnedMinutes}:${returnedSeconds}`;
+  };
   const changeRange = () => {
     audioEl.current.currentTime = progressBar.current.value;
     changePlayerCurrentTime();
-  }
+  };
 
   const changePlayerCurrentTime = () => {
-    progressBar.current.style.setProperty('--seek-before-width', `${progressBar.current.value / duration * 100}%`)
+    progressBar.current.style.setProperty(
+      "--seek-before-width",
+      `${(progressBar.current.value / duration) * 100}%`
+    );
     setCurrentTime(progressBar.current.value);
-  }
- 
+  };
+
   const skipSong = (forward = true) => {
     if (forward) {
       setCurrentSongIndex(() => {
@@ -112,7 +124,7 @@ const NowPlaying = () => {
       >
         <div className="flex gap-4 cursor-pointer items-center">
           <img width="60em" className="rounded-xl" src={cover11} alt="cover" />
-          <div className='w-24'>
+          <div className="w-24">
             <div>{songs[currentSongIndex].title}</div>
             <div>{songs[currentSongIndex].artist}</div>
           </div>
@@ -125,24 +137,37 @@ const NowPlaying = () => {
           ></audio>
           <div className="flex justify-center gap-12">
             <BiShuffle className="cursor-pointer" />
-            <GiPreviousButton onClick={()=> {skipSong(true)}} className="cursor-pointer" />
-            <div className="cursor-pointer" onClick={()=>{setIsPlaying(!isPlaying)}}>
-            {isPlaying? <BsFillPauseCircleFill/> : <BsFillPlayCircleFill/>}
+            <GiPreviousButton
+              onClick={() => {
+                skipSong(true);
+              }}
+              className="cursor-pointer"
+            />
+            <div
+              className="cursor-pointer"
+              onClick={() => {
+                setIsPlaying(!isPlaying);
+              }}
+            >
+              {isPlaying ? <BsFillPauseCircleFill /> : <BsFillPlayCircleFill />}
             </div>
-            <GiNextButton onClick={()=> {skipSong(true)}} className="cursor-pointer" />
+            <GiNextButton
+              onClick={() => {
+                skipSong(true);
+              }}
+              className="cursor-pointer"
+            />
             <TbRepeatOnce className="cursor-pointer" />
           </div>
-          <div className="bg-[#E6E6E6] mt-8 hidden cursor-pointer min-w-[40em] rounded-md h-[0.3em] lg:flex">
-            <motion.div
-              drag="x"
-              // onTimeUpdate={updateProgress}
-              ref={progressBar} 
+          <div className='hidden lg:flex w-[40rem] mt-8'>
+            {/* <div>{calculateTime(currentTime)}</div> */}
+            <input
+              type="range"
+              id="progressBar"
+              defaultValue="0"
+              ref={progressBar}
               onChange={changeRange}
-              dragConstraints={{ right: 300, left: 0 }}
-              className= {`bg-yellow rounded-md cursor-pointer w-[${width}%] relative h-[0.4em]`}
-            >
-              <div className="h-4 rounded-full bg-yellow absolute -top-1 right-0 w-4"></div>
-            </motion.div>
+            />
           </div>
         </div>
         <div className="hidden items-center lg:flex">
