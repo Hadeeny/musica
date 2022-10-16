@@ -3,7 +3,7 @@ import cover11 from "../assets/cover11.png";
 import hotline from "../assets/hotline.mp3";
 import SoSick from "../assets/So sick.mp3";
 import OlamideRock from "../assets/Olamide rock.mp3";
-import { BsFillVolumeDownFill, BsFillPlayCircleFill } from "react-icons/bs";
+import { BsFillPauseCircleFill, BsFillPlayCircleFill } from "react-icons/bs";
 import { GiNextButton, GiPreviousButton } from "react-icons/gi";
 import { BiShuffle } from "react-icons/bi";
 import { TbRepeatOnce } from "react-icons/tb";
@@ -11,6 +11,9 @@ import { motion } from "framer-motion";
 import { IconContext } from "react-icons";
 const NowPlaying = () => {
   const audioEl = useRef(null);
+  const progressBar = useRef(null);
+  const [width, setWidth] = useState(0)
+  const [duration, setDuration] = useState(0)
   const [isPlaying, setIsPlaying] = useState(false);
   const [songs, setSongs] = useState([
     {
@@ -56,6 +59,30 @@ const NowPlaying = () => {
      }
   })
 
+  // const updateProgress = ()=>{
+  //   const {duration, currentTime} = audioEl.current
+  //   const progressPercent = (currentTime/duration) * 100
+  //   setWidth(progressPercent )
+  // }
+
+  useEffect(() => {
+    let currentTime = audioEl.current.currentTime
+    setDuration(audioEl.current.duration)
+    const progressPercent = (currentTime/duration) * 100
+    setWidth(progressPercent)
+    console.log(currentTime)
+  }, [isPlaying])
+
+  const changeRange = () => {
+    audioEl.current.currentTime = progressBar.current.value;
+    changePlayerCurrentTime();
+  }
+
+  const changePlayerCurrentTime = () => {
+    progressBar.current.style.setProperty('--seek-before-width', `${progressBar.current.value / duration * 100}%`)
+    setCurrentTime(progressBar.current.value);
+  }
+ 
   const skipSong = (forward = true) => {
     if (forward) {
       setCurrentSongIndex(() => {
@@ -85,7 +112,7 @@ const NowPlaying = () => {
       >
         <div className="flex gap-4 cursor-pointer items-center">
           <img width="60em" className="rounded-xl" src={cover11} alt="cover" />
-          <div>
+          <div className='w-24'>
             <div>{songs[currentSongIndex].title}</div>
             <div>{songs[currentSongIndex].artist}</div>
           </div>
@@ -99,18 +126,20 @@ const NowPlaying = () => {
           <div className="flex justify-center gap-12">
             <BiShuffle className="cursor-pointer" />
             <GiPreviousButton onClick={()=> {skipSong(true)}} className="cursor-pointer" />
-            <BsFillPlayCircleFill
-              onClick={()=>{setIsPlaying(!isPlaying)}}
-              className="cursor-pointer"
-            />
+            <div className="cursor-pointer" onClick={()=>{setIsPlaying(!isPlaying)}}>
+            {isPlaying? <BsFillPauseCircleFill/> : <BsFillPlayCircleFill/>}
+            </div>
             <GiNextButton onClick={()=> {skipSong(true)}} className="cursor-pointer" />
             <TbRepeatOnce className="cursor-pointer" />
           </div>
           <div className="bg-[#E6E6E6] mt-8 hidden cursor-pointer min-w-[40em] rounded-md h-[0.3em] lg:flex">
             <motion.div
               drag="x"
+              // onTimeUpdate={updateProgress}
+              ref={progressBar} 
+              onChange={changeRange}
               dragConstraints={{ right: 300, left: 0 }}
-              className="bg-yellow rounded-md cursor-pointer w-1/2 relative h-[0.4em]"
+              className= {`bg-yellow rounded-md cursor-pointer w-[${width}%] relative h-[0.4em]`}
             >
               <div className="h-4 rounded-full bg-yellow absolute -top-1 right-0 w-4"></div>
             </motion.div>
