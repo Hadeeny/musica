@@ -12,7 +12,7 @@ const Home = () => {
   return (
     <>
       {/* first section */}
-      <div className="w-[90%] mt-12 h-96 mx-auto mb-[26em] lg:mb-24 lg:flex justify-between">
+      <div className="w-[90%] mt-12 h-96 mx-auto mb-[16em] lg:mb-[2em] lg:flex justify-between">
         <div className="bg-darkBlue space-y-14 lg:bg-[url('./assets/rema.png')] bg-no-repeat bg-right text-white rounded-3xl p-10 my-5 lg:w-[50em] lg:h-[23em]">
           <h4>Curated Playlist</h4>
           <div className="">
