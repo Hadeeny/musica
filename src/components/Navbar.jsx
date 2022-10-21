@@ -1,3 +1,4 @@
+import {Link as a} from 'react-router-dom'
 import {useState} from 'react'
 const Navbar = () => {
   const [toggle, setToggle] = useState(false)
@@ -6,7 +7,7 @@ const Navbar = () => {
   }
   return (
     <div>
-      <nav className={`${toggle? 'bg-darkGray': ''} pt-4 pl-4 fixed top-0 z-[200] left-0 h-full w-full lg:z-[10] text-white lg:w-14`}>
+      <nav className={`${toggle? 'bg-darkGray': 'h-1 bg-darkGray'} pt-4 pl-4 fixed top-0 z-[200] left-0 h-full w-full lg:z-[10] text-white lg:w-14`}>
         <div className="w-10/12 mx-auto">
           <div className='flex'>
           <div onClick={toggleNav} className='lg:hidden mr-4 cursor-pointer'>
@@ -36,10 +37,12 @@ const Navbar = () => {
             </svg>
           </div>
           
-          <ul className={`${toggle? "bg-darkGray": 'hidden' }  lg:-ml-2 lg:rounded-xl lg:rounded-b-xl`}>
+          <ul className={`${toggle? "bg-darkGray": 'hidden' } lg:block lg:-ml-2 lg:rounded-xl lg:rounded-b-xl`}>
+            <a href='/'>
             <li className="flex items-center my-10">
               <span className="lg:hidden ml-6 order-2">Home</span>
               <svg
+                className='lg:-ml-1 cursor-pointer hover:fill-yellow'
                 width="40"
                 height="42"
                 viewBox="0 0 40 42"
@@ -91,6 +94,7 @@ const Navbar = () => {
                 </defs>
               </svg>
             </li>
+            </a>
             <li className="flex items-center lg:ml-1 ml-[0.7rem] mb-10">
               <span className="lg:hidden ml-8 order-2">My Collections</span>
               <svg
@@ -205,7 +209,7 @@ const Navbar = () => {
               </svg>
             </li>
           </ul>
-          <ul className={`${toggle? 'bg-darkGray': 'hidden'}  lg:-ml-2 lg:mt-16 lg:rounded-xl lg:rounded-b-xl`}>
+          <ul className={`${toggle? 'bg-darkGray': 'hidden'} lg:block lg:-ml-2 lg:mt-16 lg:rounded-xl lg:rounded-b-xl`}>
             <li className="flex items-center ml-[0.7rem] lg:ml-1 mb-10">
               <span className="lg:hidden ml-8 order-2">Profile</span>
               <svg

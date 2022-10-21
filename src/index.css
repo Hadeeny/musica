@@ -3,7 +3,12 @@
 @tailwind utilities;
 
 body {
+  /* background-image: url("./assets/Lead-image.png"); */
   background-color: #1e1e1e;
+  /* background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: left; */
   color: white;
 }
 
@@ -117,3 +122,9 @@ body {
   transform: scale(1.2);
   background: var(--selectedKnobby);
 }
+
+/* #imgcover {
+  background-image: url(../src/assets/Lead-image.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+} */

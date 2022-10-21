@@ -14,7 +14,7 @@ const NowPlaying = () => {
   const progressBar = useRef(null);
   const animationRef = useRef(null);
   const [currentTime, setCurrentTime] = useState(0);
-  const [width, setWidth] = useState(0);
+  // const [width, setWidth] = useState(0);
   const [duration, setDuration] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [songs, setSongs] = useState([
@@ -75,13 +75,6 @@ const NowPlaying = () => {
     animationRef.current = requestAnimationFrame(whilePlaying);
   };
 
-  const calculateTime = (secs) => {
-    const minutes = Math.floor(secs / 60);
-    const returnedMinutes = minutes < 10 ? `0${minutes}` : `${minutes}`;
-    const seconds = Math.floor(secs % 60);
-    const returnedSeconds = seconds < 10 ? `0${seconds}` : `${seconds}`;
-    return `${returnedMinutes}:${returnedSeconds}`;
-  };
   const changeRange = () => {
     audioEl.current.currentTime = progressBar.current.value;
     changePlayerCurrentTime();
@@ -136,12 +129,12 @@ const NowPlaying = () => {
             type="audio/mpeg"
           ></audio>
           <div className="flex justify-center gap-12">
-            <BiShuffle className="cursor-pointer" />
+            <BiShuffle className="cursor-pointer hidden lg:flex" />
             <GiPreviousButton
               onClick={() => {
                 skipSong(true);
               }}
-              className="cursor-pointer"
+              className="cursor-pointer hidden lg:flex"
             />
             <div
               className="cursor-pointer"
@@ -157,7 +150,7 @@ const NowPlaying = () => {
               }}
               className="cursor-pointer"
             />
-            <TbRepeatOnce className="cursor-pointer" />
+            <TbRepeatOnce className="hidden cursor-pointer lg:flex" />
           </div>
           <div className='hidden lg:flex w-[40rem] mt-8'>
             {/* <div>{calculateTime(currentTime)}</div> */}
