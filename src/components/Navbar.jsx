@@ -7,7 +7,7 @@ const Navbar = () => {
   }
   return (
     <div>
-      <nav className={`${toggle? 'bg-darkGray': 'h-1 bg-darkGray'} pt-4 pl-4 fixed top-0 z-[200] left-0 h-full w-full lg:z-[10] text-white lg:w-14`}>
+      <nav className={`${toggle? 'bg-darkGray': 'h-0 bg-darkGray'} pt-4 pl-4 fixed top-0 z-[200] left-0 h-full w-full lg:z-[10] text-white lg:w-14`}>
         <div className="w-10/12 mx-auto">
           <div className='flex'>
           <div onClick={toggleNav} className='lg:hidden mr-4 cursor-pointer'>

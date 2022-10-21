@@ -13,16 +13,16 @@ const Home = () => {
     <>
       {/* first section */}
       <div className="w-[90%] mt-12 h-96 mx-auto mb-[26em] lg:mb-24 lg:flex justify-between">
-        <div id='head' className="bg-darkBlue text-white rounded-3xl p-10 my-5 lg:w-[50em] lg:h-[26em]">
+        <div className="bg-darkBlue space-y-14 lg:bg-[url('./assets/rema.png')] bg-no-repeat bg-right text-white rounded-3xl p-10 my-5 lg:w-[50em] lg:h-[23em]">
           <h4>Curated Playlist</h4>
-          <div className="mt-28 mb-8">
+          <div className="">
             <h2 className="text-4xl">R & B Hits</h2>
             <p>
               All mine, lie again, Petty call me everyday,
               <br /> Out of time, No love, Bad habit, <br /> and so much more
             </p>
           </div>
-          <div className='flex gap-6 mt-20'>
+          <div className='flex gap-6'>
             <div className='flex cursor-pointer'>
               <img className='ml-0' src={user2}/>
               <img className='-ml-4' src={user5}/>

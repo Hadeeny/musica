@@ -35,29 +35,29 @@ const TopCharts = () => {
   }, []);
   return (
     <div>
-      <motion.div ref={carousel} className="cursor-pointer overflow-hidden my-8 lg:overflow-x-clip">
-        <h2 className="text-2xl">Top Charts</h2>
+      <motion.div ref={carousel} className="cursor-pointer overflow-hidden ml-4 my-[1rem] lg:overflow-x-clip">
+        <h2 className="text-2xl mb-2">Top Charts</h2>
         <motion.div
           drag="x"
           dragConstraints={{ right: 0, left: -700 }}
-          className="flex gap-8 mt-2 lg:gap-4 lg:flex-col"
+          className="flex gap-8 lg:gap-4 lg:flex-col"
         >
           {topChart.map((chart, index) => {
             return ( 
               <div
                 key={index}
-                className="flex justify-between min-h-[8em] min-w-[22em] p-4 bg-darkGray rounded-xl lg:min-h-[4em]"
+                className="flex justify-between min-h-[6em] min-w-[22em] p-2 bg-darkGray rounded-xl lg:h-[4em]"
               >
-                <div className="lg:flex">
+                <div className="lg:flex gap-4 items-center">
                   <img
                     width="120rem"
                     height="100rem"
                     src={chart.cover}
-                    className="lg:w-[4em] lg:h-[4em] mr-4 mt-2"
+                    className="lg:w-[4em] lg:h-[4em]"
                   />
-                  <div>
-                    <h3 className="pt-1">{chart.album}</h3>
-                    <p className="text-sm pb-2 lg:pb-0">{chart.title}</p>
+                  <div className='p-2'>
+                    <h3 className="">{chart.album}</h3>
+                    <p className="text-sm ">{chart.title}</p>
                     <div>{chart.duration}</div>
                   </div>
                 </div>
