@@ -2,6 +2,7 @@ import Navbar from "./components/Navbar"
 import NowPlaying from "./components/NowPlaying"
 import Home from "./screens/Home"
 import AlbumScreen from "./screens/AlbumScreen"
+import CollectionScreen from "./screens/CollectionScreen"
 import {
   createBrowserRouter,
   RouterProvider,
@@ -18,6 +19,10 @@ function App() {
     {
       path: "/album",
       element: <AlbumScreen/>,
+    },
+    {
+      path: "/collection",
+      element: <CollectionScreen/>,
     },
   ]);
 
