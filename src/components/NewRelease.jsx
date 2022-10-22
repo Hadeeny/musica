@@ -1,52 +1,41 @@
 import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import cover7 from "../assets/cover7.png";
-import cover1 from "../assets/cover1.png";
-import cover2 from "../assets/cover2.png";
-import cover4 from "../assets/cover4.png";
-import cover5 from "../assets/cover5.png";
-import cover3 from "../assets/cover3.png";
+import {useDispatch, useSelector} from 'react-redux'
+import { Audio } from  'react-loader-spinner'
+import { getAllMusic } from '../features/musicSlice'
+
 
 const NewRelease = ({ title}) => {
   const [width, setWidth] = useState(0);
-  const [newRelease, setNewRelease] = useState([
-    {
-      album: "Golden age of 80s",
-      cover: cover7,
-    },
-    {
-      album: 'Raggae "n" blues',
-      cover: cover1,
-    },
-    {
-      album: "Tomorrows tunes",
-      cover: cover2,
-    },
-    {
-      album: "Tomorrows tunes",
-      cover: cover3,
-    },
-    {
-      album: "Tomorrows tunes",
-      cover: cover4,
-    },
-    {
-      album: "Tomorrows tunes",
-      cover: cover5,
-    },
-    {
-      album: "Tomorrows tunes",
-      cover: cover2,
-    },
-  ]);
+  const allMusic = useSelector(state => state.allMusic)
+
+  const {musicFiles, error, message:errorMessage, loading:loadingMusic} = allMusic
+  
+  const dispatch = useDispatch()
+  
   const carousel = useRef();
 
   useEffect(() => {
+    dispatch(getAllMusic())
+  }, [dispatch])
+  
+
+
+  useEffect(() => {
     // console.log(carousel.current);
-    setWidth(carousel.current.scrollWidth - carousel.current.offsetWidth);
+    // setWidth(carousel.current.scrollWidth - carousel.current.offsetWidth);
   }, []);
   return (
     <div className='w-11/12 mx-auto'>
+      {loadingMusic?  <Audio
+      height = "80"
+      width = "80"
+      radius = "9"
+      color = 'green'
+      ariaLabel = 'three-dots-loading'     
+      wrapperStyle
+      wrapperClass
+      /> : error? <h2>{errorMessage}</h2>: (<>
       <motion.div
         ref={carousel}
         className="cursor-pointer overflow-hidden my-8 lg:overflow-x-clip"
@@ -57,7 +46,7 @@ const NewRelease = ({ title}) => {
           dragConstraints={{ right: 0, left: -700 }}
           className="flex gap-8 mt-2"
         >
-          {newRelease.map((chart, index) => {
+          {musicFiles.map((chart, index) => {
             return (
               <div
                 key={index}
@@ -67,13 +56,15 @@ const NewRelease = ({ title}) => {
                   className="mr-4 mt-2 min-w-[10em]"
                 />
                 <div>
-                  <h3 className="pt-1">{chart.title}</h3>
+                  <h3 className="pt-1">{chart.artist}</h3>
                 </div>
               </div>
             );
           })}
         </motion.div>
       </motion.div>
+      </>) }
+      {/* {successMusic && } */}
     </div>
   );
 };

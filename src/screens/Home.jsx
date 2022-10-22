@@ -1,4 +1,4 @@
-import {useEffect} from 'react'
+// import {useEffect} from 'react'
 import TopCharts from '../components/TopCharts'
 import user2 from '../assets/Ellipse 2.png'
 import user3 from '../assets/Ellipse 3.png'
@@ -8,20 +8,20 @@ import user6 from '../assets/Ellipse 6.png'
 import like from '../assets/whitelike.svg'
 import NewRelease from '../components/NewRelease'
 import { useDispatch, useSelector } from "react-redux";
-import { getAllMusic } from '../features/musicSlice'
+// import { getAllMusic } from '../features/musicSlice'
 
 
 const Home = () => {
 
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch()
 
   // const allMusic = useSelector(state => state.allMusic)
 
   // const {musicFiles} = allMusic
 
-  useEffect(() => {
-    dispatch(getAllMusic())
-  }, [])
+  // useEffect(() => {
+  //   dispatch(getAllMusic())
+  // }, [dispatch])
   
   return (
     <>

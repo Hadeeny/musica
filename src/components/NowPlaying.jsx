@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import {useSelector} from 'react-redux'
 import cover11 from "../assets/cover11.png";
 import hotline from "../assets/hotline.mp3";
 import SoSick from "../assets/So sick.mp3";
@@ -42,6 +43,11 @@ const NowPlaying = () => {
   ]);
   const [currentSongIndex, setCurrentSongIndex] = useState(0);
   const [nextSongIndex, setNextSongIndex] = useState(currentSongIndex + 1);
+
+  const allMusic = useSelector(state => state.allMusic)
+
+  const {musicFiles, error, message:errorMessage, loading:loadingMusic} = allMusic
+
 
   useEffect(() => {
     setNextSongIndex(() => {
