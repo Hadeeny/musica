@@ -8,7 +8,7 @@ const Navbar = () => {
   return (
     <div>
       <nav className={`${toggle? 'bg-darkGray': ''} pt-4 pl-4 fixed top-0 z-[200] left-0 h-full w-full lg:z-[10] text-white lg:w-14`}>
-        <div className={`w-full h-[3em] absolute top-0 bg-darkGray mx-auto`}>
+        <div className={`w-full h-[3em] absolute top-0 py-2 bg-darkGray mx-auto`}>
           <div className='flex'>
           <div onClick={toggleNav} className='lg:hidden mr-4 cursor-pointer'>
             <div className='w-8 h-[0.18rem] bg-white m-1'></div>
