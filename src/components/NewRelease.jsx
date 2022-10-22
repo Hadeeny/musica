@@ -7,7 +7,7 @@ import cover4 from "../assets/cover4.png";
 import cover5 from "../assets/cover5.png";
 import cover3 from "../assets/cover3.png";
 
-const NewRelease = ({title}) => {
+const NewRelease = ({ title}) => {
   const [width, setWidth] = useState(0);
   const [newRelease, setNewRelease] = useState([
     {
@@ -67,7 +67,7 @@ const NewRelease = ({title}) => {
                   className="mr-4 mt-2 min-w-[10em]"
                 />
                 <div>
-                  <h3 className="pt-1">{chart.album}</h3>
+                  <h3 className="pt-1">{chart.title}</h3>
                 </div>
               </div>
             );

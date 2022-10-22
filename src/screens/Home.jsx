@@ -1,3 +1,4 @@
+import {useEffect} from 'react'
 import TopCharts from '../components/TopCharts'
 import user2 from '../assets/Ellipse 2.png'
 import user3 from '../assets/Ellipse 3.png'
@@ -6,8 +7,21 @@ import user5 from '../assets/Ellipse 5.png'
 import user6 from '../assets/Ellipse 6.png'
 import like from '../assets/whitelike.svg'
 import NewRelease from '../components/NewRelease'
+import { useDispatch, useSelector } from "react-redux";
+import { getAllMusic } from '../features/musicSlice'
+
 
 const Home = () => {
+
+  const dispatch = useDispatch()
+
+  // const allMusic = useSelector(state => state.allMusic)
+
+  // const {musicFiles} = allMusic
+
+  useEffect(() => {
+    dispatch(getAllMusic())
+  }, [])
   
   return (
     <>
@@ -40,7 +54,7 @@ const Home = () => {
         </div> 
         <TopCharts/>
       </div>
-      <NewRelease title='New Release'/>
+      <NewRelease  title='New Release'/>
       <NewRelease title='Popular in your area'/>
     </>
   );
