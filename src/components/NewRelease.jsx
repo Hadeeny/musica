@@ -1,22 +1,23 @@
 import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import {useDispatch, useSelector} from 'react-redux'
-import { Audio } from  'react-loader-spinner'
-import { getAllMusic } from '../features/musicSlice'
+import { RotatingLines, LineWave } from  'react-loader-spinner'
+import {getPlaylists} from '../features/playlistSlice'
+import { Link } from "react-router-dom";
 
 
 const NewRelease = ({ title}) => {
   const [width, setWidth] = useState(0);
-  const allMusic = useSelector(state => state.allMusic)
+  const playlist = useSelector(state => state.playlist)
 
-  const {musicFiles, error, message:errorMessage, loading:loadingMusic} = allMusic
+  const {myPlaylist, error, message:errorMessage, loading:loadingMusic} = playlist
   
   const dispatch = useDispatch()
   
   const carousel = useRef();
 
   useEffect(() => {
-    dispatch(getAllMusic())
+    dispatch(getPlaylists())
   }, [dispatch])
   
 
@@ -27,14 +28,9 @@ const NewRelease = ({ title}) => {
   }, []);
   return (
     <div className='w-11/12 mx-auto'>
-      {loadingMusic?  <Audio
+      {loadingMusic?  <RotatingLines
       height = "80"
       width = "80"
-      radius = "9"
-      color = 'green'
-      ariaLabel = 'three-dots-loading'     
-      wrapperStyle
-      wrapperClass
       /> : error? <h2>{errorMessage}</h2>: (<>
       <motion.div
         ref={carousel}
@@ -46,17 +42,19 @@ const NewRelease = ({ title}) => {
           dragConstraints={{ right: 0, left: -700 }}
           className="flex gap-8 mt-2"
         >
-          {musicFiles.map((chart, index) => {
+          {myPlaylist.map((playlist) => {
             return (
               <div
-                key={index}
+                key={playlist.id}
               >
+                <Link to={`album/${playlist.id}`}>
                 <img
-                  src={chart.cover}
-                  className="mr-4 mt-2 min-w-[10em]"
+                  src={playlist.cover}
+                  className="mr-4 mt-2 min-w-[10rem] h-[10rem]"
                 />
+                </Link>
                 <div>
-                  <h3 className="pt-1">{chart.artist}</h3>
+                  <h3 className="pt-1">{playlist.title}</h3>
                 </div>
               </div>
             );

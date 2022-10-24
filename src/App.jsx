@@ -4,34 +4,37 @@ import Home from "./screens/Home"
 import AlbumScreen from "./screens/AlbumScreen"
 import CollectionScreen from "./screens/CollectionScreen"
 import {
-  createBrowserRouter,
-  RouterProvider,
-  Route,
+  BrowserRouter as Router, Routes, Route
 } from "react-router-dom";
 
 function App() {
 
-  const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <Home/>,
-    },
-    {
-      path: "/album",
-      element: <AlbumScreen/>,
-    },
-    {
-      path: "/collection",
-      element: <CollectionScreen/>,
-    },
-  ]);
+  // const router = createBrowserRouter([
+  //   {
+  //     path: "/",
+  //     element: <Home/>,
+  //   },
+  //   {
+  //     path: "/album/:id",
+  //     element: <AlbumScreen/>,
+  //   },
+  //   {
+  //     path: "/collection",
+  //     element: <CollectionScreen/>,
+  //   },
+  // ]);
 
   return (
-    <> 
+    <Router> 
         <Navbar/> 
-      <RouterProvider router={router} />
+        <Routes>
+          <Route path='/' element={<Home/>}/>
+          <Route path='/album/:id' element={<AlbumScreen/>}/>
+          <Route path='/collection' element={<CollectionScreen/>}/>
+        </Routes>
+      {/* <RouterProvider router={router} /> */}
         <NowPlaying/>         
-    </>
+    </Router>
   )
 }
 

@@ -1,15 +1,16 @@
 import React, { useState, useRef, useEffect } from "react";
-import {useSelector} from 'react-redux'
+import {useSelector, useDispatch} from 'react-redux'
 import cover11 from "../assets/cover11.png";
-import hotline from "../assets/hotline.mp3";
-import SoSick from "../assets/So sick.mp3";
-import OlamideRock from "../assets/Olamide rock.mp3";
 import { BsFillPauseCircleFill, BsFillPlayCircleFill } from "react-icons/bs";
 import { GiNextButton, GiPreviousButton } from "react-icons/gi";
 import { BiShuffle } from "react-icons/bi";
 import { TbRepeatOnce } from "react-icons/tb";
 import { motion } from "framer-motion";
 import { IconContext } from "react-icons";
+import {getAllMusic} from '../features/musicSlice'
+import { RotatingLines } from "react-loader-spinner";
+
+
 const NowPlaying = () => {
   const audioEl = useRef(null);
   const progressBar = useRef(null);
@@ -18,40 +19,23 @@ const NowPlaying = () => {
   // const [width, setWidth] = useState(0);
   const [duration, setDuration] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [songs, setSongs] = useState([
-    {
-      artist: "Drake",
-      title: "Hotline Bling",
-      duration: "2:21:35",
-      cover: cover11,
-      src: hotline,
-    },
-    {
-      artist: "Neyo",
-      title: "So Sick",
-      duration: "2:21:35",
-      cover: cover11,
-      src: SoSick,
-    },
-    {
-      artist: "Olamide",
-      title: "Rock",
-      duration: "2:21:35",
-      cover: cover11,
-      src: OlamideRock,
-    },
-  ]);
+ 
   const [currentSongIndex, setCurrentSongIndex] = useState(0);
   const [nextSongIndex, setNextSongIndex] = useState(currentSongIndex + 1);
 
   const allMusic = useSelector(state => state.allMusic)
 
-  const {musicFiles, error, message:errorMessage, loading:loadingMusic} = allMusic
+  const {musicFiles, loading, error, message} = allMusic
 
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+  dispatch(getAllMusic())  
+  }, [dispatch])
 
   useEffect(() => {
     setNextSongIndex(() => {
-      if (currentSongIndex + 1 > songs.length - 1) {
+      if (currentSongIndex + 1 > musicFiles.length - 1) {
         return 0;
       } else {
         return currentSongIndex + 1;
@@ -99,7 +83,7 @@ const NowPlaying = () => {
       setCurrentSongIndex(() => {
         let temp = currentSongIndex;
         temp++;
-        if (temp > songs.length - 1) {
+        if (temp > musicFiles.length - 1) {
           temp = 0;
         }
         return temp;
@@ -109,7 +93,7 @@ const NowPlaying = () => {
         let temp = currentSongIndex;
         temp--;
         if (temp < 0) {
-          temp = songs.length - 1;
+          temp = musicFiles.length - 1;
         }
         return temp;
       });
@@ -121,17 +105,19 @@ const NowPlaying = () => {
         id="stub"
         className="w-11/12 flex justify-between items-center py-4 mx-auto"
       >
-        <div className="flex gap-4 cursor-pointer items-center">
-          <img width="60em" className="rounded-xl" src={cover11} alt="cover" />
+        {/* {loading? (<RotatingLines/>) : error?( <h2>{message}</h2>):(<>
+          <div className="flex gap-4 cursor-pointer items-center">
+          <img width="60em" className="rounded-xl" src={musicFiles[currentSongIndex].cover} alt="cover" />
           <div className="w-24">
-            <div>{songs[currentSongIndex].title}</div>
-            <div>{songs[currentSongIndex].artist}</div>
+            <div>{musicFiles[currentSongIndex].title}</div>
+            <div>{musicFiles[currentSongIndex].artist}</div>
           </div>
         </div>
+        </>)} */}
         <div className="h-14">
           <audio
             ref={audioEl}
-            src={songs[currentSongIndex].src}
+            // src={musicFiles[currentSongIndex].audio}
             type="audio/mpeg"
           ></audio>
           <div className="flex justify-center gap-12">

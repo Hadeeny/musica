@@ -1,4 +1,4 @@
-import {Link as a} from 'react-router-dom'
+import {Link as a, Link} from 'react-router-dom'
 import {useState} from 'react'
 const Navbar = () => {
   const [toggle, setToggle] = useState(false)
@@ -15,7 +15,8 @@ const Navbar = () => {
             <div className='w-8 h-[0.18rem] bg-white m-1'></div>
             <div className='w-8 h-[0.18rem] bg-white m-1'></div>
           </div>
-            <svg
+          <Link to={`/`}>
+          <svg
               width="32"
               height="34"
               viewBox="0 0 32 34"
@@ -35,6 +36,8 @@ const Navbar = () => {
                 fill="#9CBCBB"
               />
             </svg>
+          </Link>
+            
           </div>
           
           <ul className={`${toggle? "bg-darkGray": 'hidden' } lg:block lg:-ml-2 lg:rounded-xl lg:rounded-b-xl`}>

@@ -1,11 +1,11 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import musicAuth from "./musicAuth";
 
-export const getAllMusic = createAsyncThunk(
-  "getAllMusic",
+export const getPlaylists = createAsyncThunk(
+  "getMusicPlaylist",
   async (_, thunkAPI) => {
     try {
-      return await musicAuth.allMusic();
+      return await musicAuth.playlistService();
     } catch (error) {
       const message =
         error.respose && error.response.data.message
@@ -18,32 +18,32 @@ export const getAllMusic = createAsyncThunk(
 );
 
 const initialState = {
-  musicFiles: [],
+  myPlaylist: [],
   message: "",
 };
 
-export const musicSlice = createSlice({
-  name: "allMusic",
+export const playlistSlice = createSlice({
+  name: "allPlaylist",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(getAllMusic.pending, (state) => {
+      .addCase(getPlaylists.pending, (state) => {
         state.loading = true;
       })
-      .addCase(getAllMusic.fulfilled, (state, action) => {
+      .addCase(getPlaylists.fulfilled, (state, action) => {
         state.loading = false;
         state.success = true;
-        state.musicFiles = action.payload;
+        state.myPlaylist = action.payload;
       })
-      .addCase(getAllMusic.rejected, (state, action) => {
+      .addCase(getPlaylists.rejected, (state, action) => {
         state.loading = false;
         state.error = true;
         state.message = action.payload;
-        state.musicFiles = null;
+        state.myPlaylist = null;
       });
   },
 });
 
 // export const { reset } = authSlice.actions;
-export default musicSlice.reducer;
+export default playlistSlice.reducer;
