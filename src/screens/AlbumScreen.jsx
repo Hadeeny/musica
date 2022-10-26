@@ -11,20 +11,10 @@ const AlbumScreen = () => {
 
   const newPlay = myPlaylist.filter((playlist) => playlist.id === id);
   const list = newPlay[0].files
-// const list = [{
-//   artist: 'dfa',
-//   title: 'dakj',
-//   cover: 'jldlllllll'
-// }]
-// const newPlay = [{
-//   artist: 'dfa',
-//   title: 'dakj',
-//   cover: 'jldlllllll'
-// }]
 
-  // const playAll = () => {
-  //   dispatch(addToNowPlaying(newPlay))
-  // }
+  const playOne= (index)=>{
+    console.log(index)
+  }
   return (
     <section className="overflow-x-hidden bg-cover bg-fixed bg-left bg-[url('../assets/Lead-image.png')] w-[90%] mt-[5em] mx-auto  lg:mb-24 gap-8 items-center">
       <div className="lg:flex gap-8 items-center">
@@ -101,6 +91,7 @@ const AlbumScreen = () => {
       <div className="mt-6 space-y-2">
         {list.map((li, index) => (
           <div
+          onClick = {()=>playOne(index)}
             key={index}
             className="bg-[#25292C] flex justify-between items-center py-8 px-2 rounded-xl w-full h-14"
           >

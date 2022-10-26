@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import { RotatingLines, LineWave } from  'react-loader-spinner'
 import {getPlaylists} from '../features/playlistSlice'
 import { Link } from "react-router-dom";
+import { getAllMusic } from "../features/musicSlice";
 
 
 const NewRelease = ({ title}) => {
@@ -18,6 +19,7 @@ const NewRelease = ({ title}) => {
 
   useEffect(() => {
     dispatch(getPlaylists())
+    dispatch(getAllMusic())
   }, [dispatch])
   
 

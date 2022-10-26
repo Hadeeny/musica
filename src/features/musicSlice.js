@@ -20,6 +20,8 @@ export const getAllMusic = createAsyncThunk(
 const initialState = {
   musicFiles: [],
   nowPlaying: [],
+  isListening: false,
+  songIndex: 0,
   message: "",
 };
 
@@ -28,7 +30,11 @@ export const musicSlice = createSlice({
   initialState,
   reducers: {
     addToNowPlaying: (state, action) => {
+      state.isListening = true;
       state.nowPlaying = action.payload;
+    },
+    getIndex: (state, action) => {
+      state.songIndex = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -50,5 +56,5 @@ export const musicSlice = createSlice({
   },
 });
 
-export const { addToNowPlaying } = musicSlice.actions;
+export const { addToNowPlaying, getIndex } = musicSlice.actions;
 export default musicSlice.reducer;
