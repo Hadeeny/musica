@@ -19,13 +19,18 @@ export const getAllMusic = createAsyncThunk(
 
 const initialState = {
   musicFiles: [],
+  nowPlaying: [],
   message: "",
 };
 
 export const musicSlice = createSlice({
   name: "allMusic",
   initialState,
-  reducers: {},
+  reducers: {
+    addToNowPlaying: (state, action) => {
+      state.nowPlaying = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getAllMusic.pending, (state) => {
@@ -45,5 +50,5 @@ export const musicSlice = createSlice({
   },
 });
 
-// export const { reset } = authSlice.actions;
+export const { addToNowPlaying } = musicSlice.actions;
 export default musicSlice.reducer;

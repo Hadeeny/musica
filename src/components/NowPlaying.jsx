@@ -25,8 +25,10 @@ const NowPlaying = () => {
 
   const allMusic = useSelector(state => state.allMusic)
 
-  const {musicFiles, loading, error, message} = allMusic
-
+  const {musicFiles, nowPlaying, loading, error, message} = allMusic
+// const loading = false
+// const error = ''
+  // const nowPlaying = [] 
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -35,7 +37,7 @@ const NowPlaying = () => {
 
   useEffect(() => {
     setNextSongIndex(() => {
-      if (currentSongIndex + 1 > musicFiles.length - 1) {
+      if (currentSongIndex + 1 > nowPlaying.length - 1) {
         return 0;
       } else {
         return currentSongIndex + 1;
@@ -83,7 +85,7 @@ const NowPlaying = () => {
       setCurrentSongIndex(() => {
         let temp = currentSongIndex;
         temp++;
-        if (temp > musicFiles.length - 1) {
+        if (temp > nowPlaying.length - 1) {
           temp = 0;
         }
         return temp;
@@ -93,7 +95,7 @@ const NowPlaying = () => {
         let temp = currentSongIndex;
         temp--;
         if (temp < 0) {
-          temp = musicFiles.length - 1;
+          temp = nowPlaying.length - 1;
         }
         return temp;
       });
@@ -105,19 +107,19 @@ const NowPlaying = () => {
         id="stub"
         className="w-11/12 flex justify-between items-center py-4 mx-auto"
       >
-        {/* {loading? (<RotatingLines/>) : error?( <h2>{message}</h2>):(<>
+        {loading? (<RotatingLines/>) : error?( <h2>{message}</h2>):(<>
           <div className="flex gap-4 cursor-pointer items-center">
-          <img width="60em" className="rounded-xl" src={musicFiles[currentSongIndex].cover} alt="cover" />
+          <img width="60em" className="rounded-xl" src={nowPlaying[currentSongIndex].cover} alt="cover" />
           <div className="w-24">
-            <div>{musicFiles[currentSongIndex].title}</div>
-            <div>{musicFiles[currentSongIndex].artist}</div>
+            <div>{nowPlaying[currentSongIndex].title}</div>
+            <div>{nowPlaying[currentSongIndex].artist}</div>
           </div>
         </div>
-        </>)} */}
+        </>)}
         <div className="h-14">
           <audio
             ref={audioEl}
-            // src={musicFiles[currentSongIndex].audio}
+            src={nowPlaying[currentSongIndex].audio}
             type="audio/mpeg"
           ></audio>
           <div className="flex justify-center gap-12">
