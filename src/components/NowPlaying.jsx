@@ -20,19 +20,17 @@ const NowPlaying = () => {
   const [duration, setDuration] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
  
+  const allMusic = useSelector(state => state.allMusic)
+
+  const {songIndex, nowPlaying, loading, error, message} = allMusic
+
   const [currentSongIndex, setCurrentSongIndex] = useState(0);
   const [nextSongIndex, setNextSongIndex] = useState(currentSongIndex + 1);
 
-  const allMusic = useSelector(state => state.allMusic)
-
-  const {musicFiles, nowPlaying, loading, error, message} = allMusic
-// const loading = false
-// const error = ''
-  // const nowPlaying = [] 
   const dispatch = useDispatch()
 
   useEffect(() => {
-  dispatch(getAllMusic())  
+  dispatch(getAllMusic())
   }, [dispatch])
 
   useEffect(() => {

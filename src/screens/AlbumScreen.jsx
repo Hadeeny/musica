@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import {addToNowPlaying} from '../features/musicSlice'
+import {addToNowPlaying, getIndex} from '../features/musicSlice'
 
 const AlbumScreen = () => {
   const dispatch = useDispatch()
@@ -13,7 +13,7 @@ const AlbumScreen = () => {
   const list = newPlay[0].files
 
   const playOne= (index)=>{
-    console.log(index)
+    dispatch(getIndex(index))
   }
   return (
     <section className="overflow-x-hidden bg-cover bg-fixed bg-left bg-[url('../assets/Lead-image.png')] w-[90%] mt-[5em] mx-auto  lg:mb-24 gap-8 items-center">
@@ -93,7 +93,7 @@ const AlbumScreen = () => {
           <div
           onClick = {()=>playOne(index)}
             key={index}
-            className="bg-[#25292C] flex justify-between items-center py-8 px-2 rounded-xl w-full h-14"
+            className="bg-[#25292C] cursor-pointer flex justify-between items-center py-8 px-2 rounded-xl w-full h-14"
           >
             <div className="flex gap-2 lg:gap-60 items-center">
               <div className="flex items-center gap-8">
