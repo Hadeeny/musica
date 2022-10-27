@@ -7,7 +7,7 @@ import { BiShuffle } from "react-icons/bi";
 import { TbRepeatOnce } from "react-icons/tb";
 import { motion } from "framer-motion";
 import { IconContext } from "react-icons";
-import {getAllMusic} from '../features/musicSlice'
+import {getAllMusic, getNextSong, getSongIndex, goToNextSong, goToPrevSong} from '../features/musicSlice'
 import { RotatingLines } from "react-loader-spinner";
 
 
@@ -24,8 +24,8 @@ const NowPlaying = () => {
 
   const {songIndex, nowPlaying, loading, error, message} = allMusic
 
-  const [currentSongIndex, setCurrentSongIndex] = useState(0);
-  const [nextSongIndex, setNextSongIndex] = useState(currentSongIndex + 1);
+  // const [songIndex, setCurrentSongIndex] = useState(0);
+  // const [nextSongIndex, setNextSongIndex] = useState(currentSongIndex + 1);
 
   const dispatch = useDispatch()
 
@@ -34,14 +34,14 @@ const NowPlaying = () => {
   }, [dispatch])
 
   useEffect(() => {
-    setNextSongIndex(() => {
-      if (currentSongIndex + 1 > nowPlaying.length - 1) {
+    dispatch(getNextSong(() => {
+      if (songIndex + 1 > nowPlaying.length - 1) {
         return 0;
       } else {
-        return currentSongIndex + 1;
+        return songIndex + 1;
       }
-    });
-  }, [currentSongIndex]);
+    }))
+  }, [songIndex]);
 
   useEffect(() => {
     if (isPlaying) {
@@ -78,27 +78,20 @@ const NowPlaying = () => {
     setCurrentTime(progressBar.current.value);
   };
 
-  const skipSong = (forward = true) => {
-    if (forward) {
-      setCurrentSongIndex(() => {
-        let temp = currentSongIndex;
-        temp++;
-        if (temp > nowPlaying.length - 1) {
-          temp = 0;
-        }
-        return temp;
-      });
-    } else {
-      setCurrentSongIndex(() => {
-        let temp = currentSongIndex;
-        temp--;
-        if (temp < 0) {
-          temp = nowPlaying.length - 1;
-        }
-        return temp;
-      });
-    }
-  };
+  // const skipSong = (forward = true) => {
+  //   if (forward) {
+  //     dispatch(goToNextSong())
+  //   } else {
+  //     dispatch(goToPrevSong());
+  //   }
+  // };
+
+  // let temp = currentSongIndex;
+  //       temp--;
+  //       if (temp < 0) {
+  //         temp = nowPlaying.length - 1;
+  //       }
+  //       return temp;
   return (
     <section className="z-50 backdrop-blur-xl h-32 w-full fixed bottom-0 flex ">
       <div
@@ -107,24 +100,24 @@ const NowPlaying = () => {
       >
         {loading? (<RotatingLines/>) : error?( <h2>{message}</h2>):(<>
           <div className="flex gap-4 cursor-pointer items-center">
-          <img width="60em" className="rounded-xl" src={nowPlaying[currentSongIndex].cover} alt="cover" />
+          <img width="60em" className="rounded-xl" src={nowPlaying[songIndex].cover} alt="cover" />
           <div className="w-24">
-            <div>{nowPlaying[currentSongIndex].title}</div>
-            <div>{nowPlaying[currentSongIndex].artist}</div>
+            <div>{nowPlaying[songIndex].title}</div>
+            <div>{nowPlaying[songIndex].artist}</div>
           </div>
         </div>
         </>)}
         <div className="h-14">
           <audio
             ref={audioEl}
-            src={nowPlaying[currentSongIndex].audio}
+            src={nowPlaying[songIndex].audio}
             type="audio/mpeg"
           ></audio>
           <div className="flex justify-center gap-12">
             <BiShuffle className="cursor-pointer hidden lg:flex" />
             <GiPreviousButton
               onClick={() => {
-                skipSong(true);
+                dispatch(goToPrevSong());
               }}
               className="cursor-pointer hidden lg:flex"
             />
@@ -138,7 +131,7 @@ const NowPlaying = () => {
             </div>
             <GiNextButton
               onClick={() => {
-                skipSong(true);
+                dispatch(goToNextSong())
               }}
               className="cursor-pointer"
             />

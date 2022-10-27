@@ -41,7 +41,7 @@ const Navbar = () => {
           </div>
           
           <ul className={`${toggle? "bg-darkGray": 'hidden' } lg:block lg:-ml-2 lg:rounded-xl lg:rounded-b-xl`}>
-            <a href='/'>
+            <Link to={'/'}>
             <li className="flex items-center my-10">
               <span className="lg:hidden ml-6 order-2">Home</span>
               <svg
@@ -97,7 +97,8 @@ const Navbar = () => {
                 </defs>
               </svg>
             </li>
-            </a>
+            </Link>
+            <Link to ={'/collection'}>
             <li className="flex items-center lg:ml-1 ml-[0.7rem] mb-10">
               <span className="lg:hidden ml-8 order-2">My Collections</span>
               <svg
@@ -129,7 +130,8 @@ const Navbar = () => {
                 />
               </svg>
             </li>
-            <li className="flex items-center ml-[0.7rem] lg:ml-1 mb-10">
+            </Link>
+            <Link to = {'/'}>            <li className="flex items-center ml-[0.7rem] lg:ml-1 mb-10">
               <span className="lg:hidden ml-8 order-2">Radio</span>
               <svg
                 width="22"
@@ -150,6 +152,8 @@ const Navbar = () => {
                 />
               </svg>
             </li>
+            </Link>
+            <Link to = {'/'}>
             <li className="flex items-center ml-[0.7rem] lg:ml-1 mb-10">
               <span className="lg:hidden ml-8 order-2">Music Video</span>
               <svg
@@ -211,8 +215,10 @@ const Navbar = () => {
                 />
               </svg>
             </li>
+            </Link>
           </ul>
           <ul className={`${toggle? 'bg-darkGray': 'hidden'} lg:block lg:-ml-2 lg:mt-16 lg:rounded-xl lg:rounded-b-xl`}>
+            <Link to = {'/'}>
             <li className="flex items-center ml-[0.7rem] lg:ml-1 mb-10">
               <span className="lg:hidden ml-8 order-2">Profile</span>
               <svg
@@ -234,6 +240,8 @@ const Navbar = () => {
                 </g>
               </svg>
             </li>
+            </Link>
+            <Link to = {'/'}>
             <li className="flex items-center ml-[0.7rem] lg:ml-1">
               <span className="lg:hidden order-2 ml-8">Logout</span>
               <svg
@@ -251,6 +259,7 @@ const Navbar = () => {
                 </g>
               </svg>
             </li>
+            </Link>
           </ul>
         </div>
       </nav>

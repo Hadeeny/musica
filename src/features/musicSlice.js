@@ -22,6 +22,7 @@ const initialState = {
   nowPlaying: [],
   isListening: false,
   songIndex: 0,
+  nextSongIndex: 0,
   message: "",
 };
 
@@ -34,6 +35,23 @@ export const musicSlice = createSlice({
       state.nowPlaying = action.payload;
     },
     getIndex: (state, action) => {
+      state.songIndex = action.payload;
+    },
+    goToNextSong: (state) => {
+      if (state.songIndex < state.nowPlaying.length - 1) {
+        state.songIndex++;
+      } else state.songIndex = 0;
+    },
+    goToPrevSong: (state) => {
+      state.songIndex--;
+      if (state.songIndex < 0) {
+        state.songIndex = state.nowPlaying.length - 1;
+      }
+    },
+    getNextSong: (state, action) => {
+      state.nextSongIndex = action.payload;
+    },
+    getSongIndex: (state, action) => {
       state.songIndex = action.payload;
     },
   },
@@ -56,5 +74,12 @@ export const musicSlice = createSlice({
   },
 });
 
-export const { addToNowPlaying, getIndex } = musicSlice.actions;
+export const {
+  addToNowPlaying,
+  goToNextSong,
+  goToPrevSong,
+  getIndex,
+  getNextSong,
+  getSongIndex,
+} = musicSlice.actions;
 export default musicSlice.reducer;
