@@ -1,14 +1,14 @@
 import {Link as a, Link} from 'react-router-dom'
 import {useState} from 'react'
 const Navbar = () => {
-  const [toggle, setToggle] = useState(false)
+  const [toggle, setToggle] = useState(true)
   const toggleNav = ()=>{
     setToggle(!toggle)
   }
   return (
     <div>
-      <nav className={`${toggle? 'bg-darkGray': ''} pt-4 pl-4 fixed top-0 z-10 h-full left-0 w-full lg:z-[10] text-white lg:w-14`}>
-        <div className={`w-full h-[3em] absolute top-0 py-2 bg-darkGray mx-auto`}>
+      <nav className={`pt-4 pl-4 fixed top-0  bg-darkGray ${toggle? 'h-full': 'h-[3em]'} left-0 w-full lg:z-[10] text-white lg:w-14`}>
+        <div className={`w-full h-[3em] absolute top-0 py-2 bg-darkGray mx-auto `}>
           <div className='flex'>
           <div onClick={toggleNav} className='lg:hidden mr-4 cursor-pointer'>
             <div className='w-8 h-[0.18rem] bg-white m-1'></div>
@@ -40,7 +40,7 @@ const Navbar = () => {
             
           </div>
           
-          <ul className={`${toggle? "bg-darkGray": 'hidden' } lg:block lg:-ml-2 lg:rounded-xl lg:rounded-b-xl`}>
+          <ul className={`lg:block ${toggle? '': 'hidden'} lg:-ml-2 lg:rounded-xl lg:rounded-b-xl`}>
             <Link to={'/'}>
             <li className="flex items-center my-10">
               <span className="lg:hidden ml-6 order-2">Home</span>
