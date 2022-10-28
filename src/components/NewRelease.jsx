@@ -7,22 +7,22 @@ import { Link } from "react-router-dom";
 import { getAllMusic } from "../features/musicSlice";
 
 
-const NewRelease = ({ title}) => {
+const NewRelease = ({ myPlaylist, error, errorMessage, title, loadingMusic}) => {
   const [width, setWidth] = useState(0);
-  const playlist = useSelector(state => state.playlist)
+  // const playlist = useSelector(state => state.playlist)
 
-  const {myPlaylist, error, message:errorMessage, loading:loadingMusic} = playlist
+  // const {myPlaylist, error, message:errorMessage, loading:loadingMusic} = playlist
   
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch()
+  
+  
+  // useEffect(() => {
+  //   dispatch(getPlaylists())
+  //   dispatch(getAllMusic())
+  // }, [dispatch])
+  
   
   const carousel = useRef();
-
-  useEffect(() => {
-    dispatch(getPlaylists())
-    dispatch(getAllMusic())
-  }, [dispatch])
-  
-
 
   useEffect(() => {
     // console.log(carousel.current);

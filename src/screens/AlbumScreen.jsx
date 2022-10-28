@@ -1,10 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import {addToNowPlaying, getIndex} from '../features/musicSlice'
+import cover1 from '../assets/cover1.png'
+import {addToNowPlaying, addToCollections, getIndex} from '../features/musicSlice'
 
 const AlbumScreen = () => {
   const dispatch = useDispatch()
   const playlist = useSelector((state) => state.playlist);
+  const allMusic = useSelector((state) => state.allMusic);
 
   let { id } = useParams();
   const { myPlaylist } = playlist;
@@ -12,11 +14,21 @@ const AlbumScreen = () => {
   const newPlay = myPlaylist.filter((playlist) => playlist.id === id);
   const list = newPlay[0].files
 
+  const {myCollection} = allMusic
+
   const playOne= (index)=>{
     dispatch(getIndex(index))
   }
+
+  const add = ()=>{
+    if(!myCollection.includes(newPlay[0])){
+      dispatch(addToCollections(newPlay[0]))
+    } else {
+      alert('Already added to collection added')
+    }
+  }
   return (
-    <section className="overflow-x-hidden bg-cover bg-fixed bg-left bg-[url('../assets/Lead-image.png')] w-[90%] mt-[5em] mx-auto  lg:mb-24 gap-8 items-center">
+    <section id='imgcover' className={`overflow-x-hidden w-[90%] mt-[5em] mx-auto  lg:mb-24 gap-8 items-center`}>
       <div className="lg:flex gap-8 items-center">
         <div className="w-[22rem] lg:w-[15rem]">
           <img className="w-full" src={newPlay[0].cover} />
@@ -44,7 +56,7 @@ const AlbumScreen = () => {
               </svg>
               Play all
             </div>
-            <div className="bg-[#323239] flex items-center gap-2 rounded-3xl py-2 px-3 cursor-pointer">
+            <div onClick = {add} className="bg-[#323239] flex items-center gap-2 rounded-3xl py-2 px-3 cursor-pointer">
               <svg
                 width="16"
                 height="16"

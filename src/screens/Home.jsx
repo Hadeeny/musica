@@ -1,4 +1,4 @@
-// import {useEffect} from 'react'
+import {useEffect} from 'react'
 import TopCharts from '../components/TopCharts'
 import user2 from '../assets/Ellipse 2.png'
 import user3 from '../assets/Ellipse 3.png'
@@ -8,25 +8,26 @@ import user6 from '../assets/Ellipse 6.png'
 import like from '../assets/whitelike.svg'
 import NewRelease from '../components/NewRelease'
 import { useDispatch, useSelector } from "react-redux";
-// import { getAllMusic } from '../features/musicSlice'
-
+import {getAllMusic} from '../features/musicSlice'
+import {getPlaylists} from '../features/playlistSlice'
 
 const Home = () => {
+  const playlist = useSelector(state => state.playlist)
 
-  // const dispatch = useDispatch()
+  const {myPlaylist, error, message:errorMessage, loading:loadingMusic} = playlist
+  
+  const dispatch = useDispatch()
+  
+  useEffect(() => {
+    dispatch(getPlaylists())
+    dispatch(getAllMusic())
+  }, [dispatch])
 
-  // const allMusic = useSelector(state => state.allMusic)
-
-  // const {musicFiles} = allMusic
-
-  // useEffect(() => {
-  //   dispatch(getAllMusic())
-  // }, [dispatch])
   
   return (
     <>
       {/* first section */}
-      <div className="w-[90%] mt-12 h-96 mx-auto mb-[16em] lg:mb-[2em] lg:flex justify-between">
+      <div className="w-[90%] z-0 mt-12 h-96 mx-auto mb-[16em] lg:mb-[2em] lg:flex justify-between">
         <div className="bg-darkBlue space-y-14 lg:bg-[url('./assets/rema.png')] bg-no-repeat bg-right text-white rounded-3xl p-10 my-5 lg:w-[50em] lg:h-[23em]">
           <h4>Curated Playlist</h4>
           <div className="">
@@ -54,8 +55,8 @@ const Home = () => {
         </div> 
         <TopCharts/>
       </div>
-      <NewRelease  title='New Release'/>
-      <NewRelease title='Popular in your area'/>
+      <NewRelease error= {error} myPlaylist={myPlaylist} erroMessage={errorMessage} loadingMusic = {loadingMusic}  title='New Release'/>
+      <NewRelease error= {error} myPlaylist={myPlaylist} erroMessage={errorMessage} loadingMusic = {loadingMusic}  title='Popular in your area'/>
     </>
   );
 };

@@ -92,6 +92,7 @@ const NowPlaying = () => {
   //         temp = nowPlaying.length - 1;
   //       }
   //       return temp;
+
   return (
     <section className="z-50 backdrop-blur-xl h-32 w-full fixed bottom-0 flex ">
       <div
@@ -101,9 +102,10 @@ const NowPlaying = () => {
         {loading? (<RotatingLines/>) : error?( <h2>{message}</h2>):(<>
           <div className="flex gap-4 cursor-pointer items-center">
           <img width="60em" className="rounded-xl" src={nowPlaying[songIndex].cover} alt="cover" />
-          <div className="w-24">
+          <div className="w-[10rem] overflow-hidden relative">
             <div>{nowPlaying[songIndex].title}</div>
-            <div>{nowPlaying[songIndex].artist}</div>
+            <div
+            className='whitespace-nowrap'>{nowPlaying[songIndex].artist}</div>
           </div>
         </div>
         </>)}
@@ -114,12 +116,12 @@ const NowPlaying = () => {
             type="audio/mpeg"
           ></audio>
           <div className="flex justify-center gap-12">
-            <BiShuffle className="cursor-pointer hidden lg:flex" />
+            <BiShuffle className="cursor-pointer hidden lg:flex text-2xl" />
             <GiPreviousButton
               onClick={() => {
                 dispatch(goToPrevSong());
               }}
-              className="cursor-pointer hidden lg:flex"
+              className="cursor-pointer hidden lg:flex text-2xl"
             />
             <div
               className="cursor-pointer"
@@ -127,15 +129,15 @@ const NowPlaying = () => {
                 setIsPlaying(!isPlaying);
               }}
             >
-              {isPlaying ? <BsFillPauseCircleFill /> : <BsFillPlayCircleFill />}
+              {isPlaying ? <BsFillPauseCircleFill className='text-yellow text-2xl'/> : <BsFillPlayCircleFill className='text-yellow text-2xl' />}
             </div>
             <GiNextButton
               onClick={() => {
                 dispatch(goToNextSong())
               }}
-              className="cursor-pointer"
+              className="cursor-pointer text-2xl"
             />
-            <TbRepeatOnce className="hidden cursor-pointer lg:flex" />
+            <TbRepeatOnce className="hidden text-2xl cursor-pointer lg:flex" />
           </div>
           <div className='hidden lg:flex w-[40rem] mt-8'>
             {/* <div>{calculateTime(currentTime)}</div> */}
