@@ -4,6 +4,8 @@ import { useState } from "react";
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
   const [showBox, setShowBox] = useState(false);
+  const [showResults, setShowResults] = useState(false);
+  const [query, setQuery] = useState("");
   const toggleNav = () => {
     setToggle(!toggle);
     setShowBox(false);
@@ -345,6 +347,9 @@ const Navbar = () => {
         </svg>
 
         <input
+          onChange={(e) => {
+            setQuery(e.target.value);
+          }}
           placeholder="Search artist"
           className={`lg:flex absolute ${
             !showBox ? "hidden" : ""
@@ -352,7 +357,9 @@ const Navbar = () => {
           type="search"
         />
       </div>
-      {/* <SearchBox /> */}
+      {/* {query == "" ? setShowResults(false) : setShowResults(true)} */}
+      {/* {showResults && <SearchBox />} */}
+      <SearchBox query={query} />
     </div>
   );
 };

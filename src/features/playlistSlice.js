@@ -19,13 +19,16 @@ export const getPlaylists = createAsyncThunk(
 
 const initialState = {
   myPlaylist: [],
+  filesFound: [],
   message: "",
 };
 
 export const playlistSlice = createSlice({
   name: "allPlaylist",
   initialState,
-  reducers: {},
+  reducers: {
+    queryFile: (state, action) => {},
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getPlaylists.pending, (state) => {
@@ -35,6 +38,12 @@ export const playlistSlice = createSlice({
         state.loading = false;
         state.success = true;
         state.myPlaylist = action.payload;
+        state.myPlaylist.forEach((playlist) => {
+          state.filesFound.push(...playlist.files);
+          // if (!filesFound.artist.includes(playlist.artist)) {
+          //   state.filesFound.push(...playlist.files);
+          // }
+        });
       })
       .addCase(getPlaylists.rejected, (state, action) => {
         state.loading = false;
