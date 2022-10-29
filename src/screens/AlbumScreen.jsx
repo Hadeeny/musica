@@ -28,7 +28,7 @@ const AlbumScreen = () => {
     }
   }
   return (
-    <section id='imgcover' className={`overflow-x-hidden w-[90%] mt-[5em] mx-auto  lg:mb-24 gap-8 items-center`}>
+    <section id='imgcover' className={`overflow-x-hidden w-[90%] mt-[1rem] mb-40 mx-auto  lg:mb-24 gap-8 items-center`}>
       <div className="lg:flex gap-8 items-center">
         <div className="w-[22rem] lg:w-[15rem]">
           <img className="w-full" src={newPlay[0].cover} />
