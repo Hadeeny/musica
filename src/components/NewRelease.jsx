@@ -32,7 +32,7 @@ const NewRelease = ({
     // setWidth(carousel.current.scrollWidth - carousel.current.offsetWidth);
   }, []);
   return (
-    <div className="w-11/12 mx-auto">
+    <div className="w-[87%] mx-auto">
       {loadingMusic ? (
         <RotatingLines height="80" width="80" />
       ) : error ? (

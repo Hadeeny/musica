@@ -34,9 +34,17 @@ export const musicSlice = createSlice({
     addToNowPlaying: (state, action) => {
       state.isListening = true;
       state.nowPlaying = action.payload;
+      state.songIndex = 0;
     },
     getIndex: (state, action) => {
-      state.songIndex = action.payload;
+      state.songIndex = action.payload.index;
+      state.nowPlaying = action.payload.list;
+      state.isListening = true;
+    },
+    getSingle: (state, action) => {
+      state.songIndex = action.payload.index;
+      state.nowPlaying = action.payload.files;
+      state.isListening = true;
     },
 
     addToCollections: (state, action) => {
@@ -85,6 +93,7 @@ export const {
   goToNextSong,
   goToPrevSong,
   getIndex,
+  getSingle,
   getNextSong,
   getSongIndex,
   addToCollections,

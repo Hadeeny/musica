@@ -19,7 +19,7 @@ const Navbar = () => {
         } left-0 w-full lg:z-[10] text-white lg:w-14`}
       >
         <div
-          className={`w-full h-[3em] absolute top-0 py-2 bg-darkGray mx-auto `}
+          className={`w-full lg:w-8 h-[3em] absolute top-0 py-2 bg-darkGray mx-auto `}
         >
           <div className="flex">
             <div
@@ -57,7 +57,7 @@ const Navbar = () => {
           <ul
             className={`lg:block ${
               toggle ? "" : "hidden"
-            } lg:-ml-2 lg:rounded-xl bg-darkGray lg:w-[2rem] lg:rounded-b-xl`}
+            } lg:ml-1  lg:rounded-xl bg-darkGray lg:w-[2rem] lg:rounded-b-xl`}
           >
             <Link to={"/"}>
               <li
@@ -259,7 +259,7 @@ const Navbar = () => {
           <ul
             className={`${
               toggle ? "bg-darkGray" : "hidden"
-            } lg:block lg:-ml-2 bg-darkGray lg:w-[2rem] lg:mt-16 lg:rounded-xl lg:rounded-b-xl`}
+            } lg:block lg:ml-1 bg-darkGray lg:w-[2rem] lg:mt-16 lg:rounded-xl lg:rounded-b-xl`}
           >
             <Link to={"/"}>
               <li
@@ -357,9 +357,7 @@ const Navbar = () => {
           type="search"
         />
       </div>
-      {/* {query == "" ? setShowResults(false) : setShowResults(true)} */}
-      {/* {showResults && <SearchBox />} */}
-      <SearchBox query={query} />
+      <SearchBox setQuery={setQuery} query={query} />
     </div>
   );
 };

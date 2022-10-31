@@ -18,7 +18,7 @@ const NowPlaying = () => {
   const [currentTime, setCurrentTime] = useState(0);
   // const [width, setWidth] = useState(0);
   const [duration, setDuration] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true);
  
   const allMusic = useSelector(state => state.allMusic)
 

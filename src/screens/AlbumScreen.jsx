@@ -16,8 +16,8 @@ const AlbumScreen = () => {
 
   const {myCollection} = allMusic
 
-  const playOne= (index)=>{
-    dispatch(getIndex(index))
+  const playOne= (index, list)=>{
+    dispatch(getIndex({index, list}))
   }
 
   const add = ()=>{
@@ -28,7 +28,7 @@ const AlbumScreen = () => {
     }
   }
   return (
-    <section id='imgcover' className={`overflow-x-hidden w-[90%] mt-[1rem] mb-40 mx-auto  lg:mb-24 gap-8 items-center`}>
+    <section id='imgcover' className={`overflow-x-hidden w-[87%] mt-[1rem] mb-40 mx-auto  lg:mb-24 gap-8 items-center`}>
       <div className="lg:flex gap-8 items-center">
         <div className="w-[22rem] lg:w-[15rem]">
           <img className="w-full" src={newPlay[0].cover} />
@@ -103,7 +103,7 @@ const AlbumScreen = () => {
       <div className="mt-6 space-y-2">
         {list.map((li, index) => (
           <div
-          onClick = {()=>playOne(index)}
+          onClick = {()=>playOne(index, list)}
             key={index}
             className="bg-[#25292C] cursor-pointer flex justify-between items-center py-8 px-2 rounded-xl w-full h-14"
           >
