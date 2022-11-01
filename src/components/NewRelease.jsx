@@ -41,7 +41,7 @@ const NewRelease = ({
         <>
           <motion.div
             ref={carousel}
-            className="cursor-pointer overflow-hidden my-8 lg:overflow-x-clip"
+            className="cursor-pointer overflow-hidden my-8 mx-5 lg:overflow-x-clip"
           >
             <h2 className="text-2xl">{title}</h2>
             <motion.div

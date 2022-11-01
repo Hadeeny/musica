@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import {useSelector, useDispatch} from 'react-redux'
+import { useSelector, useDispatch } from "react-redux";
 import cover11 from "../assets/cover11.png";
 import { BsFillPauseCircleFill, BsFillPlayCircleFill } from "react-icons/bs";
 import { GiNextButton, GiPreviousButton } from "react-icons/gi";
@@ -7,9 +7,14 @@ import { BiShuffle } from "react-icons/bi";
 import { TbRepeatOnce } from "react-icons/tb";
 import { motion } from "framer-motion";
 import { IconContext } from "react-icons";
-import {getAllMusic, getNextSong, getSongIndex, goToNextSong, goToPrevSong} from '../features/musicSlice'
+import {
+  getAllMusic,
+  getNextSong,
+  getSongIndex,
+  goToNextSong,
+  goToPrevSong,
+} from "../features/musicSlice";
 import { RotatingLines } from "react-loader-spinner";
-
 
 const NowPlaying = () => {
   const audioEl = useRef(null);
@@ -19,28 +24,28 @@ const NowPlaying = () => {
   // const [width, setWidth] = useState(0);
   const [duration, setDuration] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
- 
-  const allMusic = useSelector(state => state.allMusic)
 
-  const {songIndex, nowPlaying, loading, error, message} = allMusic
+  const allMusic = useSelector((state) => state.allMusic);
+
+  const { songIndex, nowPlaying, loading, error, message } = allMusic;
 
   // const [songIndex, setCurrentSongIndex] = useState(0);
   // const [nextSongIndex, setNextSongIndex] = useState(currentSongIndex + 1);
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   useEffect(() => {
-  dispatch(getAllMusic())
-  }, [dispatch])
+    dispatch(getAllMusic());
+  }, [dispatch]);
 
   useEffect(() => {
-    dispatch(getNextSong(() => {
-      if (songIndex + 1 > nowPlaying.length - 1) {
-        return 0;
-      } else {
-        return songIndex + 1;
-      }
-    }))
+    if (songIndex + 1 > nowPlaying.length - 1) {
+      // return 0;
+      dispatch(getNextSong(0));
+    } else {
+      // return songIndex + 1;
+      dispatch(getNextSong(songIndex + 1));
+    }
   }, [songIndex]);
 
   useEffect(() => {
@@ -99,16 +104,28 @@ const NowPlaying = () => {
         id="stub"
         className="w-11/12 flex justify-between items-center py-4 mx-auto"
       >
-        {loading? (<RotatingLines/>) : error?( <h2>{message}</h2>):(<>
-          <div className="flex gap-4 cursor-pointer items-center">
-          <img width="60em" className="rounded-xl" src={nowPlaying[songIndex].cover} alt="cover" />
-          <div className="w-[10rem] overflow-hidden relative">
-            <div>{nowPlaying[songIndex].title}</div>
-            <div
-            className='whitespace-nowrap'>{nowPlaying[songIndex].artist}</div>
-          </div>
-        </div>
-        </>)}
+        {loading ? (
+          <RotatingLines />
+        ) : error ? (
+          <h2>{message}</h2>
+        ) : (
+          <>
+            <div className="flex gap-4 cursor-pointer items-center">
+              <img
+                width="60em"
+                className="rounded-xl"
+                src={nowPlaying[songIndex].cover}
+                alt="cover"
+              />
+              <div className="w-[10rem] overflow-hidden relative">
+                <div>{nowPlaying[songIndex].title}</div>
+                <div className="whitespace-nowrap">
+                  {nowPlaying[songIndex].artist}
+                </div>
+              </div>
+            </div>
+          </>
+        )}
         <div className="h-14">
           <audio
             ref={audioEl}
@@ -129,17 +146,21 @@ const NowPlaying = () => {
                 setIsPlaying(!isPlaying);
               }}
             >
-              {isPlaying ? <BsFillPauseCircleFill className='text-yellow text-2xl'/> : <BsFillPlayCircleFill className='text-yellow text-2xl' />}
+              {isPlaying ? (
+                <BsFillPauseCircleFill className="text-yellow text-2xl" />
+              ) : (
+                <BsFillPlayCircleFill className="text-yellow text-2xl" />
+              )}
             </div>
             <GiNextButton
               onClick={() => {
-                dispatch(goToNextSong())
+                dispatch(goToNextSong());
               }}
               className="cursor-pointer text-2xl"
             />
             <TbRepeatOnce className="hidden text-2xl cursor-pointer lg:flex" />
           </div>
-          <div className='hidden lg:flex w-[40rem] mt-8'>
+          <div className="hidden lg:flex w-[40rem] mt-8">
             {/* <div>{calculateTime(currentTime)}</div> */}
             <input
               type="range"

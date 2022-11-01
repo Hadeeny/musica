@@ -12,26 +12,22 @@ const Navbar = () => {
   };
 
   return (
-    <div>
+    <div className="flex">
       <nav
-        className={`pt-4 pl-4 bg-darkGray h-full ${
-          toggle ? "h-[100vh]" : "h-[3em]"
-        } left-0 w-full lg:z-[10] text-white lg:w-14`}
+        className={`bg-darkGray p-5 ${
+          toggle ? "h-[100vh]" : "h-[10vh]"
+        } top-0 fixed  w-[100vw] lg:h-[100vh] lg:w-[5rem]`}
       >
-        <div
-          className={`w-full lg:w-8 h-[3em] absolute top-0 py-2 bg-darkGray mx-auto `}
-        >
+        <div className={``}>
           <div className="flex">
-            <div
-              onClick={toggleNav}
-              className="lg:hidden z-[8000] mr-4 cursor-pointer"
-            >
-              <div className="w-8 h-[0.18rem] bg-white m-1"></div>
+            <div onClick={toggleNav} className="lg:hidden mr-4 cursor-pointer">
+              <div className="w-8 h-[0.18rem] bg-white m-1 "></div>
               <div className="w-8 h-[0.18rem] bg-white m-1"></div>
               <div className="w-8 h-[0.18rem] bg-white m-1"></div>
             </div>
             <Link to={`/`}>
               <svg
+                className="cursor-pointer"
                 width="32"
                 height="34"
                 viewBox="0 0 32 34"
@@ -54,11 +50,7 @@ const Navbar = () => {
             </Link>
           </div>
 
-          <ul
-            className={`lg:block ${
-              toggle ? "" : "hidden"
-            } lg:ml-1  lg:rounded-xl bg-darkGray lg:w-[2rem] lg:rounded-b-xl`}
-          >
+          <ul className={`${!toggle ? "hidden" : "block"}  lg:block`}>
             <Link to={"/"}>
               <li
                 onClick={() => {
@@ -68,7 +60,7 @@ const Navbar = () => {
               >
                 <span className="lg:hidden ml-6 order-2">Home</span>
                 <svg
-                  className="lg:-ml-1 cursor-pointer hover:fill-yellow"
+                  className="lg:-ml-1 cursor-pointer"
                   width="40"
                   height="42"
                   viewBox="0 0 40 42"
@@ -78,7 +70,8 @@ const Navbar = () => {
                   <g filter="url(#filter0_d_19_207)">
                     <path
                       d="M17.3818 29.0503V26.239C17.3818 25.5266 17.9611 24.9478 18.6786 24.9433H21.3132C22.034 24.9433 22.6183 25.5234 22.6183 26.239V29.0421C22.6182 29.66 23.1204 30.1622 23.7427 30.1667H25.5402C26.3797 30.1688 27.1855 29.8392 27.7799 29.2507C28.3743 28.6621 28.7084 27.8629 28.7084 27.0294V19.0437C28.7084 18.3704 28.4077 17.7318 27.8876 17.2999L21.7811 12.4514C20.7137 11.6034 19.1891 11.6308 18.1533 12.5166L12.1781 17.2999C11.6334 17.7191 11.3078 18.3596 11.2917 19.0437V27.0213C11.2917 28.7584 12.7101 30.1667 14.4598 30.1667H16.2163C16.5159 30.1688 16.804 30.0522 17.0167 29.8426C17.2294 29.633 17.349 29.3478 17.3489 29.0503H17.3818Z"
-                      fill="#FACD66"
+                      fill="#EFEEE0"
+                      fillOpacity="0.25"
                     />
                   </g>
                   <defs>
@@ -89,9 +82,9 @@ const Navbar = () => {
                       width="39.4167"
                       height="40.3334"
                       filterUnits="userSpaceOnUse"
-                      color-interpolation-filters="sRGB"
+                      colorInterpolationFilters="sRGB"
                     >
-                      <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                      <feFlood floodOpacity="0" result="BackgroundImageFix" />
                       <feColorMatrix
                         in="SourceAlpha"
                         type="matrix"
@@ -139,22 +132,22 @@ const Navbar = () => {
                   <path
                     d="M15.5833 4.35416H14.6666V2.98832C14.6666 2.22749 14.0433 1.60416 13.2825 1.60416H8.71748C7.95665 1.60416 7.33331 2.22749 7.33331 2.98832V4.35416H6.41665C5.40831 4.35416 4.58331 5.17916 4.58331 6.18749V6.30666C4.87665 6.22416 5.17915 6.18749 5.49998 6.18749H16.5C16.8208 6.18749 17.1233 6.22416 17.4166 6.30666V6.18749C17.4166 5.17916 16.5916 4.35416 15.5833 4.35416Z"
                     fill="#EFEEE0"
-                    fill-opacity="0.25"
+                    fillOpacity="0.25"
                   />
                   <path
                     d="M12.7691 15.5192C12.4758 15.5192 12.2466 15.7575 12.2466 16.0417C12.2466 16.3258 12.485 16.5642 12.7691 16.5642C13.0533 16.5642 13.2916 16.3258 13.2916 16.0417C13.2916 15.7575 13.0533 15.5192 12.7691 15.5192Z"
                     fill="#EFEEE0"
-                    fill-opacity="0.25"
+                    fillOpacity="0.25"
                   />
                   <path
                     d="M8.31419 16.3258C8.02085 16.3258 7.79169 16.5642 7.79169 16.8483C7.79169 17.1325 8.03002 17.3708 8.31419 17.3708C8.59835 17.3708 8.83669 17.1325 8.83669 16.8483C8.83669 16.5642 8.60752 16.3258 8.31419 16.3258Z"
                     fill="#EFEEE0"
-                    fill-opacity="0.25"
+                    fillOpacity="0.25"
                   />
                   <path
                     d="M17.4166 7.68167C17.1233 7.59917 16.8208 7.5625 16.5 7.5625H5.49998C5.17915 7.5625 4.87665 7.59917 4.58331 7.68167C3.00665 8.09417 1.83331 9.53333 1.83331 11.2292V16.7292C1.83331 18.7458 3.48331 20.3958 5.49998 20.3958H16.5C18.5166 20.3958 20.1666 18.7458 20.1666 16.7292V11.2292C20.1666 9.53333 18.9933 8.09417 17.4166 7.68167ZM14.6666 12.1733V16.0417C14.6666 17.0867 13.8141 17.9392 12.7691 17.9392C11.7241 17.9392 10.8716 17.0867 10.8716 16.0417C10.8716 14.9967 11.7241 14.1442 12.7691 14.1442C12.9525 14.1442 13.1266 14.1808 13.2916 14.2267V13.0717L10.2208 13.9058V16.8483C10.2208 16.8575 10.2208 16.8667 10.2116 16.8758C10.2025 17.9117 9.34998 18.755 8.31415 18.755C7.26915 18.755 6.41665 17.9025 6.41665 16.8483C6.41665 15.7942 7.26915 14.9508 8.31415 14.9508C8.49748 14.9508 8.67165 14.9875 8.84581 15.0333V13.3833V11.9625C8.84581 11.1742 9.34081 10.5325 10.0925 10.3308L12.5216 9.66167C13.3008 9.45083 13.7958 9.6525 14.0708 9.86333C14.3458 10.0742 14.6666 10.4867 14.6666 11.3025V12.1733Z"
                     fill="#EFEEE0"
-                    fill-opacity="0.25"
+                    fillOpacity="0.25"
                   />
                 </svg>
               </li>
@@ -177,12 +170,12 @@ const Navbar = () => {
                   <path
                     d="M7.10419 1.83333V4.58333H6.41669C6.17835 4.58333 5.94919 4.5925 5.72919 4.62916V1.83333C5.72919 1.45749 6.04085 1.14583 6.41669 1.14583C6.79252 1.14583 7.10419 1.45749 7.10419 1.83333Z"
                     fill="#EFEEE0"
-                    fill-opacity="0.25"
+                    fillOpacity="0.25"
                   />
                   <path
                     d="M15.5833 4.58333H6.41665C6.17831 4.58333 5.94915 4.5925 5.72915 4.62916C3.36415 4.90416 1.83331 6.65499 1.83331 9.16666V15.5833C1.83331 18.3333 3.66665 20.1667 6.41665 20.1667H15.5833C18.3333 20.1667 20.1666 18.3333 20.1666 15.5833V9.16666C20.1666 6.41666 18.3333 4.58333 15.5833 4.58333ZM7.22331 14.6667C5.95831 14.6667 4.93165 13.64 4.93165 12.375C4.93165 11.11 5.95831 10.0833 7.22331 10.0833C8.48831 10.0833 9.51498 11.11 9.51498 12.375C9.51498 13.64 8.48831 14.6667 7.22331 14.6667ZM13.1816 14.8958H12.7233C12.3475 14.8958 12.0358 14.5842 12.0358 14.2083C12.0358 13.8325 12.3475 13.5208 12.7233 13.5208H13.1816C13.5575 13.5208 13.8691 13.8325 13.8691 14.2083C13.8691 14.5842 13.5575 14.8958 13.1816 14.8958ZM16.39 14.8958H15.9316C15.5558 14.8958 15.2441 14.5842 15.2441 14.2083C15.2441 13.8325 15.5558 13.5208 15.9316 13.5208H16.39C16.7658 13.5208 17.0775 13.8325 17.0775 14.2083C17.0775 14.5842 16.7658 14.8958 16.39 14.8958ZM16.39 11.2292H12.7233C12.3475 11.2292 12.0358 10.9175 12.0358 10.5417C12.0358 10.1658 12.3475 9.85416 12.7233 9.85416H16.39C16.7658 9.85416 17.0775 10.1658 17.0775 10.5417C17.0775 10.9175 16.7658 11.2292 16.39 11.2292Z"
                     fill="#EFEEE0"
-                    fill-opacity="0.25"
+                    fillOpacity="0.25"
                   />
                 </svg>
               </li>
@@ -205,62 +198,58 @@ const Navbar = () => {
                   <path
                     d="M10.3125 7.205H1.83331V14.8408C1.83331 14.8958 1.83331 14.9508 1.84248 14.9967H10.3125V7.205Z"
                     fill="#EFEEE0"
-                    fill-opacity="0.25"
+                    fillOpacity="0.25"
                   />
                   <path
                     d="M7.04919 5.83H10.3125V1.83333H7.07669V5.71999C7.07669 5.75666 7.05836 5.79333 7.04919 5.83Z"
                     fill="#EFEEE0"
-                    fill-opacity="0.25"
+                    fillOpacity="0.25"
                   />
                   <path
                     d="M5.70168 5.72V1.98C3.66668 2.40166 2.33751 3.75833 1.95251 5.83H5.72001C5.71085 5.79333 5.70168 5.75666 5.70168 5.72Z"
                     fill="#EFEEE0"
-                    fill-opacity="0.25"
+                    fillOpacity="0.25"
                   />
                   <path
                     d="M14.8683 1.83333H11.6875V5.83H14.8683V1.83333Z"
                     fill="#EFEEE0"
-                    fill-opacity="0.25"
+                    fillOpacity="0.25"
                   />
                   <path
                     d="M16.2342 5.83001H20.0475C19.6625 3.74001 18.315 2.37417 16.2434 1.97084V5.80251C16.2434 5.81167 16.2342 5.82084 16.2342 5.83001Z"
                     fill="#EFEEE0"
-                    fill-opacity="0.25"
+                    fillOpacity="0.25"
                   />
                   <path
                     d="M16.2433 20.0292C18.2508 19.635 19.5708 18.3517 20.0017 16.3717H16.2433V20.0292Z"
                     fill="#EFEEE0"
-                    fill-opacity="0.25"
+                    fillOpacity="0.25"
                   />
                   <path
                     d="M14.8683 16.3717H11.6875V20.1667H14.8683V16.3717Z"
                     fill="#EFEEE0"
-                    fill-opacity="0.25"
+                    fillOpacity="0.25"
                   />
                   <path
                     d="M11.6875 14.9967H20.1575C20.1667 14.9508 20.1667 14.8958 20.1667 14.8408V7.205H11.6875V14.9967Z"
                     fill="#EFEEE0"
-                    fill-opacity="0.25"
+                    fillOpacity="0.25"
                   />
                   <path
                     d="M10.3125 16.3717H7.07666V20.1667H10.3125V16.3717Z"
                     fill="#EFEEE0"
-                    fill-opacity="0.25"
+                    fillOpacity="0.25"
                   />
                   <path
                     d="M1.99835 16.3717C2.42919 18.3333 3.73085 19.6167 5.70169 20.02V16.3717H1.99835Z"
                     fill="#EFEEE0"
-                    fill-opacity="0.25"
+                    fillOpacity="0.25"
                   />
                 </svg>
               </li>
             </Link>
           </ul>
-          <ul
-            className={`${
-              toggle ? "bg-darkGray" : "hidden"
-            } lg:block lg:ml-1 bg-darkGray lg:w-[2rem] lg:mt-16 lg:rounded-xl lg:rounded-b-xl`}
-          >
+          <ul className={`${!toggle ? "hidden" : "block"} lg:block`}>
             <Link to={"/"}>
               <li
                 onClick={() => {
@@ -316,7 +305,7 @@ const Navbar = () => {
           </ul>
         </div>
       </nav>
-      <div className="absolute top-0 lg:bg-darkGray lg:fixed h-16 w-full">
+      <div className="h-16 w-full">
         <svg
           onClick={() => {
             setShowBox(!showBox);
@@ -331,18 +320,18 @@ const Navbar = () => {
           <path
             d="M7.33333 12.6667C10.2789 12.6667 12.6667 10.2789 12.6667 7.33333C12.6667 4.38781 10.2789 2 7.33333 2C4.38781 2 2 4.38781 2 7.33333C2 10.2789 4.38781 12.6667 7.33333 12.6667Z"
             stroke="white"
-            stroke-opacity="0.25"
-            stroke-width="1.33333"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeOpacity="0.25"
+            strokeWidth="1.33333"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
           <path
             d="M14 14L11.1 11.1"
             stroke="white"
-            stroke-opacity="0.25"
-            stroke-width="1.33333"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeOpacity="0.25"
+            strokeWidth="1.33333"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
         </svg>
 
