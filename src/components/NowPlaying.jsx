@@ -20,10 +20,12 @@ const NowPlaying = () => {
   const audioEl = useRef(null);
   const progressBar = useRef(null);
   const animationRef = useRef(null);
+  const volume = useRef(null);
   const [currentTime, setCurrentTime] = useState(0);
   // const [width, setWidth] = useState(0);
   const [duration, setDuration] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
+  const [vol, setVol] = useState(0.5);
 
   const allMusic = useSelector((state) => state.allMusic);
 
@@ -40,13 +42,11 @@ const NowPlaying = () => {
 
   useEffect(() => {
     if (songIndex + 1 > nowPlaying.length - 1) {
-      // return 0;
       dispatch(getNextSong(0));
     } else {
-      // return songIndex + 1;
       dispatch(getNextSong(songIndex + 1));
     }
-  }, [songIndex]);
+  }, [dispatch, songIndex]);
 
   useEffect(() => {
     if (isPlaying) {
@@ -73,6 +73,11 @@ const NowPlaying = () => {
   const changeRange = () => {
     audioEl.current.currentTime = progressBar.current.value;
     changePlayerCurrentTime();
+  };
+
+  const changeVol = (e) => {
+    setVol(e.target.value);
+    audioEl.current.volume = volume.current.value;
   };
 
   const changePlayerCurrentTime = () => {
@@ -177,9 +182,18 @@ const NowPlaying = () => {
               fill="#EFEEE0"
             />
           </svg>
-          <div className="bg-[#E6E6E6] hidden min-w-[10em] cursor-pointer rounded-md h-[0.3em] lg:block">
+          {/* <div className="bg-[#E6E6E6] hidden min-w-[10em] cursor-pointer rounded-md h-[0.3em] lg:block">
             <div className="bg-yellow rounded-md w-1/2 relative h-[0.3em]"></div>
-          </div>
+          </div> */}
+          <input
+            type="range"
+            value={vol}
+            min="0"
+            step="0.1"
+            max="1"
+            ref={volume}
+            onChange={changeVol}
+          />
         </div>
       </div>
     </section>
