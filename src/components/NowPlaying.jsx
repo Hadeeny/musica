@@ -83,21 +83,6 @@ const NowPlaying = () => {
     setCurrentTime(progressBar.current.value);
   };
 
-  // const skipSong = (forward = true) => {
-  //   if (forward) {
-  //     dispatch(goToNextSong())
-  //   } else {
-  //     dispatch(goToPrevSong());
-  //   }
-  // };
-
-  // let temp = currentSongIndex;
-  //       temp--;
-  //       if (temp < 0) {
-  //         temp = nowPlaying.length - 1;
-  //       }
-  //       return temp;
-
   return (
     <section className="z-50 backdrop-blur-xl h-32 w-full fixed bottom-0 flex ">
       <div
