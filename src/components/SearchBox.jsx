@@ -3,8 +3,6 @@ import { getSingle } from "../features/musicSlice";
 import { useSelector, useDispatch } from "react-redux";
 const SearchBox = ({ query, setQuery }) => {
   const dispatch = useDispatch();
-  const playlist = useSelector((state) => state.playlist);
-  const { filesFound } = playlist;
 
   const allMusic = useSelector((state) => state.allMusic);
   const { musicFiles } = allMusic;
@@ -17,11 +15,10 @@ const SearchBox = ({ query, setQuery }) => {
   });
 
   const show = (id, files) => {
-    setQuery("");
+    // setQuery((query) => (query = ""));
     const index = musicFiles.findIndex((object) => {
       return object.id === id;
     });
-    console.log(index);
     dispatch(getSingle({ index, files }));
   };
 

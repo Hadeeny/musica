@@ -1,11 +1,17 @@
 import { useState } from "react";
+import Collections from '../components/Collections'
 import NewRelease from "../components/NewRelease";
 import { useSelector } from "react-redux";
+import MusicList from "../components/MusicList";
 const CollectionScreen = () => {
   const playlist = useSelector((state) => state.playlist);
   const allMusic = useSelector((state) => state.allMusic);
 
-  const { myCollection } = allMusic;
+  const [showLikes, setShowLikes] = useState(false)
+  const [showCollections, setShowCollections] = useState(true)
+
+
+  const { myCollection, myLikes } = allMusic;
 
   const {
     myPlaylist,
@@ -14,30 +20,44 @@ const CollectionScreen = () => {
     loading: loadingMusic,
   } = playlist;
 
+  const displayLikes=()=>{
+    setShowCollections(false)
+    setShowLikes(true)
+  }
+
+  const displayCollections = ()=>{
+    setShowLikes(false)
+    setShowCollections(true)
+  }
+
+
+
   return (
     <div className="mt-[1rem] ml-12">
       <div className="flex ml-12 gap-2">
         <button
-          onClick={likes}
           className={`py-2 px-4 cursor-pointer rounded-3xl focus:bg-yellow focus:text-black border-[1.2px] border-[#eee]`}
           href=""
+          onClick={displayCollections}
         >
           My Collection
         </button>
         <button
-          onClick={collections}
+        onClick={displayLikes}
           className={`py-2 px-4 cursor-pointer focus:bg-yellow focus:text-black rounded-3xl border-[1.2px]  border-[#eee]`}
           href=""
         >
           Likes
         </button>
       </div>
-      <NewRelease
+      {showCollections && <Collections
         error={error}
         myPlaylist={myCollection}
         erroMessage={errorMessage}
         loadingMusic={loadingMusic}
-      />
+      />}
+      {showLikes && (<div className='mt-6 w-11/12 mx-auto space-y-2'> 
+      <MusicList list={myLikes}/></div>)}
     </div>
   );
 };

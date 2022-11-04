@@ -41,7 +41,7 @@ const NewRelease = ({
         <>
           <motion.div
             ref={carousel}
-            className="cursor-pointer overflow-hidden my-8 mx-5 lg:overflow-x-clip"
+            className="cursor-pointer overflow-hidden my-8 lg:overflow-x-clip"
           >
             <h2 className="text-2xl">{title}</h2>
             <motion.div
@@ -51,15 +51,15 @@ const NewRelease = ({
             >
               {myPlaylist.map((playlist) => {
                 return (
-                  <div key={playlist.id}>
-                    <Link to={`album/${playlist.id}`}>
+                  <div key={playlist.id} className="relative">
+                    <Link to={`/album/${playlist.id}`}>
                       <img
                         src={playlist.cover}
                         className="mr-4 mt-2 min-w-[10rem] rounded-xl hover:rounded-xl hover:scale-[1.1] duration-500 h-[10rem]"
                       />
                     </Link>
-                    <div>
-                      <h3 className="pt-1">{playlist.title}</h3>
+                    <div className="absolute bottom-0">
+                      <h3 className="p-2">{playlist.title}</h3>
                     </div>
                   </div>
                 );

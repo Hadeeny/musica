@@ -19,7 +19,7 @@ body {
   background-position: right;
 }
 
-#progressBar {
+.progressBar {
   --bar-bg: rgba(0, 0, 0, 0.1);
   --seek-before-width: 0;
   --seek-before-color: #facd66;
@@ -36,7 +36,7 @@ body {
 }
 
 /* progress bar - safari */
-#progressBar::-webkit-slider-runnable-track {
+.progressBar::-webkit-slider-runnable-track {
   background: var(--bar-bg);
   border-radius: 10px;
   position: relative;
@@ -47,7 +47,7 @@ body {
 }
 
 /* progress bar - firefox */
-#progressBar::-moz-range-track {
+.progressBar::-moz-range-track {
   background: var(--bar-bg);
   border-radius: 10px;
   position: relative;
@@ -56,12 +56,12 @@ body {
   outline: none;
 }
 
-#progressBar::-moz-focus-outer {
+.progressBar::-moz-focus-outer {
   border: 0;
 }
 
 /* progress bar - chrome and safari */
-#progressBar::before {
+.progressBar::before {
   content: "";
   height: 5px;
   width: var(--seek-before-width);
@@ -76,7 +76,7 @@ body {
 }
 
 /* progress bar - firefox */
-#progressBar::-moz-range-progress {
+.progressBar::-moz-range-progress {
   background-color: var(--seek-before-color);
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
@@ -84,7 +84,7 @@ body {
 }
 
 /* knobby - chrome and safari */
-#progressBar::-webkit-slider-thumb {
+.progressBar::-webkit-slider-thumb {
   -webkit-appearance: none;
   height: 10px;
   width: 10px;
@@ -99,13 +99,13 @@ body {
 }
 
 /* knobby while dragging - chrome and safari */
-#progressBar:active::-webkit-slider-thumb {
+.progressBar:active::-webkit-slider-thumb {
   transform: scale(1.2);
   background: var(--selectedKnobby);
 }
 
 /* knobby - firefox */
-#progressBar::-moz-range-thumb {
+.progressBar::-moz-range-thumb {
   height: 15px;
   width: 15px;
   border-radius: 50%;
@@ -118,13 +118,7 @@ body {
 }
 
 /* knobby while dragging - firefox */
-#progressBar:active::-moz-range-thumb {
+.progressBar:active::-moz-range-thumb {
   transform: scale(1.2);
   background: var(--selectedKnobby);
 }
-
-/* #imgcover {
-  background-image: url(../src/assets/Lead-image.png);
-  background-repeat: no-repeat;
-  background-size: cover;
-} */

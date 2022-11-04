@@ -20,6 +20,7 @@ export const getPlaylists = createAsyncThunk(
 const initialState = {
   myPlaylist: [],
   filesFound: [],
+  musicFiles: [],
   message: "",
 };
 
@@ -27,7 +28,13 @@ export const playlistSlice = createSlice({
   name: "allPlaylist",
   initialState,
   reducers: {
-    queryFile: (state, action) => {},
+    toggleLike: (state, action) => {
+      state.musicFiles.filter((file) => {
+        if (file.id === action.payload) {
+          file.liked = !file.liked;
+        }
+      });
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -40,9 +47,12 @@ export const playlistSlice = createSlice({
         state.myPlaylist = action.payload;
         state.myPlaylist.forEach((playlist) => {
           state.filesFound.push(...playlist.files);
-          // if (!filesFound.artist.includes(playlist.artist)) {
-          //   state.filesFound.push(...playlist.files);
-          // }
+        });
+        state.myPlaylist.map((playlist) => {
+          state.musicFiles.push(...playlist.files);
+        });
+        state.musicFiles.forEach((object) => {
+          object.liked = false;
         });
       })
       .addCase(getPlaylists.rejected, (state, action) => {
@@ -54,5 +64,5 @@ export const playlistSlice = createSlice({
   },
 });
 
-// export const { reset } = authSlice.actions;
+export const { toggleLike } = playlistSlice.actions;
 export default playlistSlice.reducer;

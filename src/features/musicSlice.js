@@ -21,6 +21,7 @@ const initialState = {
   musicFiles: [],
   nowPlaying: [],
   myCollection: [],
+  myLikes: [],
   isListening: false,
   songIndex: 0,
   nextSongIndex: 0,
@@ -49,6 +50,9 @@ export const musicSlice = createSlice({
 
     addToCollections: (state, action) => {
       state.myCollection.push(action.payload);
+    },
+    addToLikes: (state, action) => {
+      state.myLikes.push(action.payload);
     },
 
     goToNextSong: (state) => {
@@ -97,5 +101,6 @@ export const {
   getNextSong,
   getSongIndex,
   addToCollections,
+  addToLikes,
 } = musicSlice.actions;
 export default musicSlice.reducer;
