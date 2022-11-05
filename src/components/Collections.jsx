@@ -14,25 +14,13 @@ const NewRelease = ({
   loadingMusic,
 }) => {
   const [width, setWidth] = useState(0);
-  // const playlist = useSelector(state => state.playlist)
-
-  // const {myPlaylist, error, message:errorMessage, loading:loadingMusic} = playlist
-
-  // const dispatch = useDispatch()
-
-  // useEffect(() => {
-  //   dispatch(getPlaylists())
-  //   dispatch(getAllMusic())
-  // }, [dispatch])
-
   const carousel = useRef();
 
   useEffect(() => {
-    // console.log(carousel.current);
-    // setWidth(carousel.current.scrollWidth - carousel.current.offsetWidth);
+    setWidth(carousel.current.scrollWidth - carousel.current.offsetWidth);
   }, []);
   return (
-    <div className="w-[87%] mx-auto">
+    <div className="lg:w-[87%] w-[99%] z-[0] mx-auto">
       {loadingMusic ? (
         <RotatingLines height="80" width="80" />
       ) : error ? (
@@ -46,7 +34,7 @@ const NewRelease = ({
             <h2 className="text-2xl">{title}</h2>
             <motion.div
               drag="x"
-              dragConstraints={{ right: 0, left: -700 }}
+              dragConstraints={{ right: 0, left: -width }}
               className="flex gap-8 mt-2"
             >
               {myPlaylist.map((playlist) => {

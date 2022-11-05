@@ -17,7 +17,7 @@ const NewRelease = ({
     setWidth(carousel.current.scrollWidth - carousel.current.offsetWidth);
   }, []);
   return (
-    <div className="w-[87%] mx-auto">
+    <div className="w-[99%] lg:w-[87%] mx-auto">
       {loadingMusic ? (
         <RotatingLines height="80" width="80" />
       ) : error ? (
@@ -28,7 +28,7 @@ const NewRelease = ({
             ref={carousel}
             className="cursor-pointer overflow-hidden my-8 mx-5 lg:overflow-x-clip"
           >
-            <h2 className="text-2xl">{title}</h2>
+            <h2 className="text-2xl my-10">{title}</h2>
             <motion.div
               drag="x"
               dragConstraints={{ right: 0, left: -width }}

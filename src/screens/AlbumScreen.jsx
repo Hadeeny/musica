@@ -29,18 +29,14 @@ const newList = list.map(object => {
       alert('Already added to collection added')
     }
   }
-
-  // const likeMusic = (item)=>{
-  //   dispatch(addToLikes(item))
-  // }
   return (
-    <section id='imgcover' className={`overflow-x-hidden w-[87%] mt-[1rem] mb-40 mx-auto  lg:mb-24 gap-8 items-center`}>
+    <div className='overflow-x-hidden w-[87%] mt-[1rem] mb-40 mx-auto lg:mb-24 gap-8 items-center'>
       <div className="lg:flex gap-8 items-center">
         <div className="w-[22rem] lg:w-[15rem]">
-          <img className="w-full" src={newPlay[0].cover} />
+          <img width='300rem' className="rounded-xl" src={newPlay[0].cover} />
         </div>
         <div className="w-[25em] space-y-3">
-          <h2 className="text-blue-300 text-3xl">{newPlay[0].title}</h2>
+          <h2 className="text-blue-300 py-2 text-3xl">{newPlay[0].title}</h2>
           <p className="text-md">
             Lorem ipsum dolor sit amet consectetur adipisicing elit.
             Voluptatibus, cum voluptatum! Quisquam
@@ -107,12 +103,9 @@ const newList = list.map(object => {
         </div>
       </div>
       <div className="mt-6 space-y-2">
-        {/* {list.map((li, index) => (
-          
-        ))} */}
         <MusicList list={list} />
       </div>
-    </section>
+    </div>
   );
 };
 

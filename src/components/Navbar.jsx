@@ -19,7 +19,7 @@ const Navbar = () => {
     <div className="flex">
       <nav
         className={`bg-darkGray p-5 ${
-          toggle ? "h-[100vh]" : "h-[10vh]"
+          toggle ? "h-[100vh]" : "h-[9vh]"
         } top-0 fixed  w-[100vw] lg:h-[100vh] lg:w-[5rem]`}
       >
         <div className={``}>
