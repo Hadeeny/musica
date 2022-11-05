@@ -30,7 +30,7 @@ const CollectionScreen = () => {
   };
 
   return (
-    <div className="mt-[1rem] ml-4">
+    <div className="mt-[2rem] ml-4">
       <div className="flex gap-2">
         <button
           className={`py-2 px-4 lg:ml-16 cursor-pointer rounded-3xl focus:bg-yellow focus:text-black border-[1.2px] border-[#eee]`}

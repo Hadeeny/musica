@@ -23,7 +23,7 @@ const MusicList = ({ list }) => {
         <div
         onClick={() => playOne(index, list)}
           key={index}
-          className="bg-[#25292C] cursor-pointer flex justify-between items-center py-8 px-2 rounded-xl w-full h-14"
+          className="bg-[#25292C] cursor-pointer flex justify-between items-center py-8 px-2 rounded-xl lg:w-[99%] mx-auto h-14"
         >
           <div  className="flex gap-2 lg:gap-60 items-center">
             <div className="flex items-center gap-8">

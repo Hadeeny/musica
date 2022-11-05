@@ -20,7 +20,7 @@ const NewRelease = ({
     setWidth(carousel.current.scrollWidth - carousel.current.offsetWidth);
   }, []);
   return (
-    <div className="lg:w-[87%] w-[99%] z-[0] mx-auto">
+    <div className="lg:w-[87%] w-[99%] mx-auto">
       {loadingMusic ? (
         <RotatingLines height="80" width="80" />
       ) : error ? (
@@ -39,14 +39,14 @@ const NewRelease = ({
             >
               {myPlaylist.map((playlist) => {
                 return (
-                  <div key={playlist.id} className="relative">
+                  <div key={playlist.id} className="">
                     <Link to={`/album/${playlist.id}`}>
                       <img
                         src={playlist.cover}
                         className="mr-4 mt-2 min-w-[10rem] rounded-xl hover:rounded-xl hover:scale-[1.1] duration-500 h-[10rem]"
                       />
                     </Link>
-                    <div className="absolute bottom-0">
+                    <div className="">
                       <h3 className="p-2">{playlist.title}</h3>
                     </div>
                   </div>
