@@ -29,10 +29,12 @@ export const playlistSlice = createSlice({
   initialState,
   reducers: {
     toggleLike: (state, action) => {
-      state.musicFiles.filter((file) => {
-        if (file.id === action.payload) {
-          file.liked = !file.liked;
-        }
+      state.myPlaylist.forEach((file) => {
+        file.files.forEach((item) => {
+          if (item.id === action.payload) {
+            item.liked = !item.liked;
+          }
+        });
       });
     },
   },

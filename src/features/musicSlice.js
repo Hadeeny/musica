@@ -52,7 +52,9 @@ export const musicSlice = createSlice({
       state.myCollection.push(action.payload);
     },
     addToLikes: (state, action) => {
-      state.myLikes.push(action.payload);
+      if (!state.myLikes.includes(action.payload.id)) {
+        state.myLikes.push(action.payload);
+      }
     },
 
     goToNextSong: (state) => {

@@ -4,27 +4,19 @@ import { addToLikes, getIndex } from "../features/musicSlice";
 import { toggleLike } from "../features/playlistSlice";
 
 const MusicList = ({ list }) => {
-  const playlist = useSelector((state) => state.playlist);
-  const { musicFiles } = playlist;
+  const allMusic = useSelector((state) => state.allMusic);
+  const { myLikes } = allMusic;
   const dispatch = useDispatch();
   const playOne = (index, list) => {
     dispatch(getIndex({ index, list }));
   };
   const likeMusic = (item) => {
-    dispatch(addToLikes(item));
     dispatch(toggleLike(item.id));
+    if (!myLikes.includes(item)) {
+      dispatch(addToLikes(item));
+    }
   };
 
-  const formatStyle = () => {
-    // musicFiles.forEach((file) => {
-    //   if (file.id === id) {
-    //     return "fill-red-400";
-    //   } else {
-    //     return "hidden lg:flex ";
-    //   }
-    // });
-    return "hidden lg:flex";
-  };
   return (
     <>
       {list.map((li, index) => (
@@ -37,11 +29,7 @@ const MusicList = ({ list }) => {
               <img width="50rem" src={li.cover} />
               <svg
                 onClick={() => likeMusic(li)}
-                className={`hidden lg:flex ${musicFiles.forEach((file) => {
-                  if (file.id === li.id) {
-                    return "fill-red-400";
-                  }
-                })}`}
+                className={`hidden lg:flex ${li.liked && "fill-red-500"}`}
                 width="20"
                 height="20"
                 viewBox="0 0 20 20"

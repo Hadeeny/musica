@@ -110,7 +110,7 @@ const newList = list.map(object => {
         {/* {list.map((li, index) => (
           
         ))} */}
-        <MusicList list={newList} />
+        <MusicList list={list} />
       </div>
     </section>
   );
