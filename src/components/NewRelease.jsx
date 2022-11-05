@@ -1,10 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { useDispatch, useSelector } from "react-redux";
 import { RotatingLines, LineWave } from "react-loader-spinner";
-import { getPlaylists } from "../features/playlistSlice";
 import { Link } from "react-router-dom";
-import { getAllMusic } from "../features/musicSlice";
 
 const NewRelease = ({
   myPlaylist,
@@ -14,22 +11,10 @@ const NewRelease = ({
   loadingMusic,
 }) => {
   const [width, setWidth] = useState(0);
-  // const playlist = useSelector(state => state.playlist)
-
-  // const {myPlaylist, error, message:errorMessage, loading:loadingMusic} = playlist
-
-  // const dispatch = useDispatch()
-
-  // useEffect(() => {
-  //   dispatch(getPlaylists())
-  //   dispatch(getAllMusic())
-  // }, [dispatch])
-
   const carousel = useRef();
 
   useEffect(() => {
-    // console.log(carousel.current);
-    // setWidth(carousel.current.scrollWidth - carousel.current.offsetWidth);
+    setWidth(carousel.current.scrollWidth - carousel.current.offsetWidth);
   }, []);
   return (
     <div className="w-[87%] mx-auto">
@@ -46,7 +31,7 @@ const NewRelease = ({
             <h2 className="text-2xl">{title}</h2>
             <motion.div
               drag="x"
-              dragConstraints={{ right: 0, left: -700 }}
+              dragConstraints={{ right: 0, left: -width }}
               className="flex gap-8 mt-2"
             >
               {myPlaylist.map((playlist) => {
@@ -68,7 +53,6 @@ const NewRelease = ({
           </motion.div>
         </>
       )}
-      {/* {successMusic && } */}
     </div>
   );
 };

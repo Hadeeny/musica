@@ -39,7 +39,7 @@ const TopCharts = () => {
         <h2 className="text-2xl mb-2">Top Charts</h2>
         <motion.div
           drag="x"
-          dragConstraints={{ right: 0, left: -700 }}
+          dragConstraints={{ right: 0, left: -width }}
           className="flex gap-8 lg:gap-4 lg:flex-col"
         >
           {topChart.map((chart, index) => {

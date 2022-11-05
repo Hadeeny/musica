@@ -26,7 +26,7 @@ const MusicList = ({ list }) => {
         >
           <div className="flex gap-2 lg:gap-60 items-center">
             <div className="flex items-center gap-8">
-              <img width="50rem" src={li.cover} />
+              <img width="50rem" src={li.cover} onClick={() => playOne(index, list)}/>
               <svg
                 onClick={() => likeMusic(li)}
                 className={`hidden lg:flex ${li.liked && "fill-red-500"}`}
