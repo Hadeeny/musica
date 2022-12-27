@@ -22,7 +22,7 @@ const Navbar = () => {
           toggle ? "h-[100vh]" : "h-[9vh]"
         } top-0 fixed  w-[100vw] lg:h-[100vh] lg:w-[5rem]`}
       >
-        <div className={``}>
+        <div className={``}> 
           <div className="flex">
             <div onClick={toggleNav} className="lg:hidden mr-4 cursor-pointer">
               <div className="w-8 h-[0.18rem] bg-white m-1 "></div>
