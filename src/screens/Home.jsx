@@ -1,4 +1,6 @@
 import { useEffect } from "react";
+
+import {  useLocation } from "react-router-dom";
 import TopCharts from "../components/TopCharts";
 import user2 from "../assets/Ellipse 2.png";
 import user3 from "../assets/Ellipse 3.png";
@@ -12,6 +14,12 @@ import { getAllMusic } from "../features/musicSlice";
 import { getPlaylists } from "../features/playlistSlice";
 
 const Home = () => {
+
+  const {pathname} = useLocation()
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
   const playlist = useSelector((state) => state.playlist);
 
   const {

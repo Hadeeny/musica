@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import {useEffect} from 'react'
+import { useParams, useLocation } from "react-router-dom";
 import cover1 from '../assets/cover1.png'
 import MusicList from '../components/MusicList'
 import {addToNowPlaying, addToLikes,  addToCollections, getIndex} from '../features/musicSlice'
@@ -8,6 +9,11 @@ const AlbumScreen = () => {
   const dispatch = useDispatch()
   const playlist = useSelector((state) => state.playlist);
   const allMusic = useSelector((state) => state.allMusic);
+
+  const {pathname} = useLocation()
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   let { id } = useParams();
   const { myPlaylist } = playlist;
