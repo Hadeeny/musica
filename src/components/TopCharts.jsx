@@ -30,7 +30,7 @@ const TopCharts = () => {
               
               <div
                 key={index}
-                className="flex justify-between min-h-[6em] min-w-[22em] p-2 bg-darkGray rounded-xl lg:h-[4em]"
+                className="flex justify-between min-h-[6em] min-w-[22em] p-2 bg-gray-800 rounded-xl lg:h-[4em]"
               >
                 <div className="lg:flex gap-4 items-center">
                   <img
