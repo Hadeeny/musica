@@ -22,7 +22,7 @@ const TopCharts = () => {
         <motion.div
           drag="x"
           dragConstraints={{ right: 0, left: -width }}
-          className="flex gap-8 lg:gap-4 lg:flex-col"
+          className="flex mb-40 gap-8 lg:gap-4 lg:flex-col"
         >
           {myPlaylist.slice(0, 3).map((chart, index) => {
             return ( 

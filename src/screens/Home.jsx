@@ -74,13 +74,14 @@ const Home = () => {
         loadingMusic={loadingMusic}
         title="New Release"
       />
-      <NewRelease
+      {/* <NewRelease
         error={error}
         myPlaylist={myPlaylist}
         erroMessage={errorMessage}
         loadingMusic={loadingMusic}
         title="Popular in your area"
-      />
+        
+      /> */}
     </>
   );
 };

@@ -16,25 +16,16 @@ const NewRelease = ({
   title,
   loadingMusic,
 }) => {
-  const [width, setWidth] = useState(0);
-  const carousel = useRef();
-
-  useEffect(() => {
-    setWidth(carousel.current.scrollWidth - carousel.current.offsetWidth);
-  }, []);
   return (
-    <div className="w-[99%] relative lg:w-[87%] mx-auto">
+    <div className="w-[99%] lg:w-[87%] mx-auto">
       {loadingMusic ? (
         <RotatingLines height="80" width="80" />
       ) : error ? (
         <h2>{errorMessage}</h2>
       ) : (
         <>
-          <motion.div
-            ref={carousel}
-            className="cursor-pointer overflow-hidden my-8 mx-5 lg:overflow-x-clip"
-          >
-            <h2 className="text-2xl my-10">{title}</h2>
+          <motion.div className="cursor-pointer py-[10rem]">
+            {/* <h2 className="text-2xl my-10">{title}</h2> */}
             <Swiper
               slidesPerView={5}
               spaceBetween={30}
@@ -63,13 +54,13 @@ const NewRelease = ({
               })}
             </Swiper>
             <Swiper
-              slidesPerView={3}
-              spaceBetween={30}
+              slidesPerView={2}
+              spaceBetween={60}
               loop={false}
               pagination={{
                 clickable: true,
               }}
-              className="md:hidden px-[1rem] block"
+              className="md:hidden absolute w-full inset-x-0 px-[1rem] block"
             >
               {myPlaylist.map((playlist) => {
                 return (
