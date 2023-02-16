@@ -11,23 +11,20 @@ import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 
 const TopCharts = ({ loading }) => {
-  const [width, setWidth] = useState(0);
-
-  const carousel = useRef();
-
   const playlist = useSelector((state) => state.playlist);
   const { myPlaylist } = playlist;
 
   return (
     <div>
       <h2 className="text-2xl ml-6 mb-4">Top Charts</h2>
+
       {/* skeleton loader */}
       {loading && (
         <div className="mb-[3rem]">
           {/* {[1].map((i, j) => ( */}
           <div className="w-full md:w-[200px]">
-            <div className="relative space-y-5 overflow-hidden rounded-2xl bg-white/5 p-4 shadow-xl shadow-black/5 before:absolute before:inset-0 before:-translate-x-full before:-skew-x-12 before:animate-[shimmer_2s_infinite] before:border-t before:border-white/10 before:bg-gradient-to-r before:from-transparent before:via-white/10 before:to-transparent">
-              <div className="h-24 rounded-lg bg-white/5"></div>
+            <div className="space-y-5 overflow-hidden rounded-2xl bg-white/5 p-4 shadow-xl shadow-black/5 before:absolute before:inset-0 before:-translate-x-full before:-skew-x-12 before:animate-[shimmer_2s_infinite] before:border-t before:border-white/10 before:bg-gradient-to-r before:from-transparent before:via-white/10 before:to-transparent">
+              <div className="h-24 w-1/2 rounded-lg bg-white/5"></div>
               <div className="space-y-3">
                 <div className="h-3 w-3/5 rounded-lg bg-white/5"></div>
                 <div className="h-3 w-4/5 rounded-lg bg-white/10"></div>
@@ -38,6 +35,7 @@ const TopCharts = ({ loading }) => {
           {/* ))} */}
         </div>
       )}
+      {/* Desktop */}
       <div className="hidden md:block">
         {myPlaylist.slice(0, 3).map((chart, index) => (
           <Link key={index} to={`album/${chart.id}`}>
@@ -63,6 +61,7 @@ const TopCharts = ({ loading }) => {
           </Link>
         ))}
       </div>
+      {/* ends desktop */}
       {/* mobile */}
       <Swiper
         slidesPerView={1}
@@ -72,7 +71,7 @@ const TopCharts = ({ loading }) => {
         pagination={{
           clickable: true,
         }}
-        className="md:hidden absolute w-full inset-x-0 px-[1.5rem] block"
+        className="md:hidden w-full inset-x-0 px-[1.5rem] block"
       >
         {myPlaylist.slice(0, 3).map((chart, index) => (
           <SwiperSlide key={index} className="md:hidden">

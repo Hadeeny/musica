@@ -83,6 +83,7 @@ const Home = () => {
         title="Popular in your area"
         
       />
+      
     </>
   );
 };
