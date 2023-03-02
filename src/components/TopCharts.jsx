@@ -26,10 +26,10 @@ const TopCharts = () => {
         >
           {myPlaylist.slice(0, 3).map((chart, index) => {
             return ( 
-              <Link to={`album/${chart.id}`}>
+              <Link key={index} to={`album/${chart.id}`}>
               
               <div
-                key={index}
+                
                 className="flex justify-between min-h-[6em] min-w-[22em] p-2 bg-gray-800 rounded-xl lg:h-[4em]"
               >
                 <div className="lg:flex gap-4 items-center">
