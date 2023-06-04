@@ -37,6 +37,9 @@ export const playlistSlice = createSlice({
         });
       });
     },
+    populatePlaylists: (state, action) => {
+      state.myPlaylist = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -66,5 +69,5 @@ export const playlistSlice = createSlice({
   },
 });
 
-export const { toggleLike } = playlistSlice.actions;
+export const { toggleLike, populatePlaylists } = playlistSlice.actions;
 export default playlistSlice.reducer;

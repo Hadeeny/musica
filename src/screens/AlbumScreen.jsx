@@ -1,16 +1,21 @@
 import { useDispatch, useSelector } from "react-redux";
-import {useEffect} from 'react'
+import { useEffect } from "react";
 import { useParams, useLocation } from "react-router-dom";
-import cover1 from '../assets/cover1.png'
-import MusicList from '../components/MusicList'
-import {addToNowPlaying, addToLikes,  addToCollections, getIndex} from '../features/musicSlice'
+import cover1 from "../assets/cover1.png";
+import MusicList from "../components/MusicList";
+import {
+  addToNowPlaying,
+  addToLikes,
+  addToCollections,
+  getIndex,
+} from "../features/musicSlice";
 
 const AlbumScreen = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const playlist = useSelector((state) => state.playlist);
   const allMusic = useSelector((state) => state.allMusic);
 
-  const {pathname} = useLocation()
+  const { pathname } = useLocation();
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
@@ -19,27 +24,28 @@ const AlbumScreen = () => {
   const { myPlaylist } = playlist;
 
   const newPlay = myPlaylist.filter((playlist) => playlist.id === id);
-  const list = newPlay[0].files
+  const list = newPlay[0].files;
 
-  const {myCollection} = allMusic
+  // const { myCollection } = allMusic;
+  const myCollection = [];
 
   // add a new key to all the objects in the array
-const newList = list.map(object => {
-  return {...object, liked: false}
-})
+  const newList = list.map((object) => {
+    return { ...object, liked: false };
+  });
 
-  const add = ()=>{
-    if(!myCollection.includes(newPlay[0])){
-      dispatch(addToCollections(newPlay[0]))
+  const add = () => {
+    if (!myCollection.includes(newPlay[0])) {
+      dispatch(addToCollections(newPlay[0]));
     } else {
-      alert('Already added to collection added')
+      alert("Already added to collection added");
     }
-  }
+  };
   return (
-    <div className='overflow-x-hidden w-[87%] mt-[1rem] mb-40 mx-auto lg:mb-24 gap-8 items-center'>
+    <div className="overflow-x-hidden w-[87%] mt-[1rem] mb-40 mx-auto lg:mb-24 gap-8 items-center">
       <div className="lg:flex gap-8 items-center">
         <div className="w-[22rem] lg:w-[15rem]">
-          <img width='300rem' className="rounded-xl" src={newPlay[0].cover} />
+          <img width="300rem" className="rounded-xl" src={newPlay[0].cover} />
         </div>
         <div className="w-[25em] space-y-3">
           <h2 className="text-blue-300 py-2 text-3xl">{newPlay[0].title}</h2>
@@ -49,7 +55,12 @@ const newList = list.map(object => {
           </p>
           <div>64 Songs - 16 hrs+</div>
           <div className="flex gap-3">
-            <div onClick={()=>{dispatch(addToNowPlaying(list))}} className="bg-[#323239] rounded-3xl py-2 flex gap-2 items-center px-3 cursor-pointer">
+            <div
+              onClick={() => {
+                dispatch(addToNowPlaying(list));
+              }}
+              className="bg-[#323239] rounded-3xl py-2 flex gap-2 items-center px-3 cursor-pointer"
+            >
               <svg
                 width="16"
                 height="16"
@@ -64,7 +75,10 @@ const newList = list.map(object => {
               </svg>
               Play all
             </div>
-            <div onClick = {add} className="bg-[#323239] flex items-center gap-2 rounded-3xl py-2 px-3 cursor-pointer">
+            <div
+              onClick={add}
+              className="bg-[#323239] flex items-center gap-2 rounded-3xl py-2 px-3 cursor-pointer"
+            >
               <svg
                 width="16"
                 height="16"

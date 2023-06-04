@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-import {  useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import TopCharts from "../components/TopCharts";
 import user2 from "../assets/Ellipse 2.png";
 import user3 from "../assets/Ellipse 3.png";
@@ -14,33 +14,18 @@ import { getAllMusic } from "../features/musicSlice";
 import { getPlaylists } from "../features/playlistSlice";
 
 const Home = () => {
-
-  const {pathname} = useLocation()
+  const { pathname } = useLocation();
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
 
-  const playlist = useSelector((state) => state.playlist);
-
-  const {
-    myPlaylist,
-    error,
-    message: errorMessage,
-    loading: loadingMusic,
-  } = playlist;
-
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getPlaylists());
-    dispatch(getAllMusic());
-  }, [dispatch]);
-
   return (
     <>
       {/* first section */}
-      <div className="w-[99%] lg:w-[87%] z-[100] h-96 mx-auto mb-[16em] 
-      lg:mb-[2em] lg:flex">
+      <div
+        className="w-[99%] lg:w-[87%] z-[100] h-96 mx-auto mb-[16em] 
+      lg:mb-[2em] lg:flex"
+      >
         <div className="bg-darkBlue space-y-14 lg:bg-[url('./assets/rema.png')] bg-no-repeat bg-right text-white rounded-3xl p-10 my-5 mx-5 lg:w-[50em] lg:h-[23em]">
           <h4>Curated Playlist</h4>
           <div className="">
@@ -66,24 +51,10 @@ const Home = () => {
             </div>
           </div>
         </div>
-        <TopCharts loading={loadingMusic} />
+        <TopCharts />
       </div>
-      <NewRelease
-        error={error}
-        myPlaylist={myPlaylist}
-        erroMessage={errorMessage}
-        loadingMusic={loadingMusic}
-        title="New Release"
-      />
-      <NewRelease
-        error={error}
-        myPlaylist={myPlaylist}
-        erroMessage={errorMessage}
-        loadingMusic={loadingMusic}
-        title="Popular in your area"
-        
-      />
-      
+      <NewRelease title="New Release" />
+      <NewRelease title="Popular in your area" />
     </>
   );
 };
